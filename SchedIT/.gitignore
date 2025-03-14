@@ -1,6 +1,8 @@
 # Ignore Visual Studio solution files
 *.sln
+*.csproj
 
 # Ignore bin folder
 bin/
 wwwroot/
+obj/
