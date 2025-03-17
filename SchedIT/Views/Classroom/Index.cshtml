@@ -25,6 +25,9 @@
                 <td>@classroom.Building</td>
                 <td>@classroom.Capacity</td>
                 <td>@classroom.Equipment</td>
+                <td>
+                    <a asp-controller="EditClassroom" asp-action="Edit" asp-route-id="@classroom.Id" class="btn btn-warning">Редагувати</a>
+                </td>
             </tr>
         }
     </tbody>
