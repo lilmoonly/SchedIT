@@ -9,5 +9,6 @@ namespace MyMvcApp.Data
 
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }

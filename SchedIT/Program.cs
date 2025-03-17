@@ -39,6 +39,18 @@ using (var scope = app.Services.CreateScope())
         db.Classrooms.Add(classroom);
         db.SaveChanges();
     }
+
+    if (!db.Teachers.Any())
+    {
+        var teacher = new Teacher
+        {
+            FullName = "Іван Петров",
+            Position = "Доцент",
+            Faculty = "Факультет комп'ютерних наук"
+        };
+        db.Teachers.Add(teacher);
+        db.SaveChanges();
+    }
 }
 
 app.UseHttpsRedirection();
