@@ -8,5 +8,6 @@ namespace MyMvcApp.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Classroom> Classrooms { get; set; }
     }
 }

@@ -1,0 +1,31 @@
+@model IEnumerable<MyMvcApp.Models.Classroom>
+
+@{
+    ViewData["Title"] = "Classrooms";
+}
+
+<h2>Classroom List</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Classroom</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Building</th>
+            <th>Capacity</th>
+            <th>Equipment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var classroom in Model)
+        {
+            <tr>
+                <td>@classroom.Number</td>
+                <td>@classroom.Building</td>
+                <td>@classroom.Capacity</td>
+                <td>@classroom.Equipment</td>
+            </tr>
+        }
+    </tbody>
+</table>

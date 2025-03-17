@@ -26,6 +26,19 @@ using (var scope = app.Services.CreateScope())
         );
         db.SaveChanges();
     }
+
+    if (!db.Classrooms.Any())
+    {
+        var classroom = new Classroom
+        {
+            Number = "101",
+            Building = "Головний корпус",
+            Capacity = 30,
+            Equipment = "Проектор"
+        };
+        db.Classrooms.Add(classroom);
+        db.SaveChanges();
+    }
 }
 
 app.UseHttpsRedirection();
