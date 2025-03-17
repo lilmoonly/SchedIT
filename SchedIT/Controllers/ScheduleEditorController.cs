@@ -41,5 +41,22 @@ namespace MyMvcApp.Controllers
             }
             return View(schedule);
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Schedule schedule)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Schedules.Add(schedule);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(schedule);
+        }
     }
 }

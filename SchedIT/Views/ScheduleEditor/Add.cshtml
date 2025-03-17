@@ -1,0 +1,13 @@
+@model MyMvcApp.Models.Schedule
+
+<h1>Додавання нового запису</h1>
+
+<form method="post">
+    <label>Час:</label>
+    <input type="text" asp-for="Time" required />
+
+    <label>Предмет:</label>
+    <input type="text" asp-for="Subject" required />
+
+    <button type="submit" class="btn btn-success">Додати</button>
+</form>
