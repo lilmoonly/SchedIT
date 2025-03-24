@@ -6,7 +6,6 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Список викладачів</h2>
-    <a class="btn btn-success" asp-action="Add">Додати</a>
 </div>
 
 
@@ -30,6 +29,11 @@
                 <a asp-controller="TeacherEdit" asp-action="Edit" asp-route-id="@teacher.Id" class="btn btn-warning">Редагувати</a>
             </td>
         </tr>
-    }
+    }    
+    <tr>
+        <td colspan="4">
+            <a class="btn btn-success" asp-action="Create">Додати</a>
+        </td>
+    </tr>
     </tbody>
 </table>
