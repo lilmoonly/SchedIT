@@ -18,9 +18,16 @@ namespace MyMvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schedule = await _context.Schedules.ToListAsync();
             
-            var scheduleView = schedule.Select(s => $"{s.Time}: {s.Subject}").ToList();
+            var schedule = await _context.Schedules
+                .Include(s => s.Subject)
+                .Include(s => s.TimeEntry)
+                .ToListAsync();
+
+            var scheduleView = schedule
+                .Select(s => $"{s.TimeEntry?.Value}: {s.Subject?.Name}")
+                .ToList();
+
 
             return View(scheduleView);
         }

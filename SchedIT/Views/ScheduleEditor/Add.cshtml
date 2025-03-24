@@ -1,13 +1,29 @@
-@model MyMvcApp.Models.Schedule
+@model MyMvcApp.Models.ScheduleFormViewModel
 
-<h1>Додавання нового запису</h1>
+<h1>Додати пару</h1>
 
 <form method="post">
-    <label>Час:</label>
-    <input type="text" asp-for="Time" required />
+    <div class="form-group">
+        <label>Предмет</label>
+        <select asp-for="Schedule.SubjectId" class="form-control" asp-items="Model.SubjectOptions"></select>
+    </div>
 
-    <label>Предмет:</label>
-    <input type="text" asp-for="Subject" required />
+    <div class="form-group">
+        <label>Час</label>
+        <select asp-for="Schedule.TimeEntryId" class="form-control" asp-items="Model.TimeOptions"></select>
+    </div>
 
-    <button type="submit" class="btn btn-success">Додати</button>
+    <div class="form-group">
+        <label>Викладач</label>
+        <select asp-for="Schedule.TeacherId" class="form-control" asp-items="Model.TeacherOptions"></select>
+        <small class="form-text text-muted">Формат: Ім'я (Посада) — Факультет</small>
+    </div>
+
+    <div class="form-group">
+        <label>Аудиторія</label>
+        <select asp-for="Schedule.ClassroomId" class="form-control" asp-items="Model.ClassroomOptions"></select>
+        <small class="form-text text-muted">Формат: Номер, Будівля (Місткість місць)</small>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Додати</button>
 </form>

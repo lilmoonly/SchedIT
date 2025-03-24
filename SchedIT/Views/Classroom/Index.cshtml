@@ -1,34 +1,35 @@
 @model IEnumerable<MyMvcApp.Models.Classroom>
 
 @{
-    ViewData["Title"] = "Classrooms";
+    ViewData["Title"] = "Аудиторії";
 }
 
-<h2>Classroom List</h2>
+<h2>Список аудиторій</h2>
 
-<a asp-action="Create" class="btn btn-primary mb-3">Add Classroom</a>
+<a asp-action="Create" class="btn btn-success mb-3">Додати аудиторію</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Number</th>
-            <th>Building</th>
-            <th>Capacity</th>
-            <th>Equipment</th>
-        </tr>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Номер</th>
+        <th>Будівля</th>
+        <th>Вмістимість</th>
+        <th>Обладнання</th>
+        <th>Дії</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var classroom in Model)
-        {
-            <tr>
-                <td>@classroom.Number</td>
-                <td>@classroom.Building</td>
-                <td>@classroom.Capacity</td>
-                <td>@classroom.Equipment</td>
-                <td>
-                    <a asp-controller="EditClassroom" asp-action="Edit" asp-route-id="@classroom.Id" class="btn btn-warning">Редагувати</a>
-                </td>
-            </tr>
-        }
+    @foreach (var classroom in Model)
+    {
+        <tr>
+            <td>@classroom.Number</td>
+            <td>@classroom.Building</td>
+            <td>@classroom.Capacity</td>
+            <td>@classroom.Equipment</td>
+            <td>
+                <a asp-controller="EditClassroom" asp-action="Edit" asp-route-id="@classroom.Id" class="btn btn-warning">Редагувати</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

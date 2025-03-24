@@ -10,5 +10,8 @@ namespace MyMvcApp.Data
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<TimeEntry> Times { get; set; }
+
     }
 }
