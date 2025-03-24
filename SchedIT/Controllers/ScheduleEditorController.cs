@@ -19,6 +19,7 @@ namespace MyMvcApp.Controllers
         public IActionResult Index()
         {
             var schedules = _context.Schedules
+                .Include(s => s.DayEntry)
                 .Include(s => s.Subject)
                 .Include(s => s.TimeEntry)
                 .Include(s => s.Teacher)
@@ -79,6 +80,11 @@ namespace MyMvcApp.Controllers
             return new ScheduleFormViewModel
             {
                 Schedule = schedule,
+                DayOptions = _context.Days.Select(s => new SelectListItem
+                {
+                    Value = s.Id.ToString(),
+                    Text = s.Value
+                }).ToList(),
                 SubjectOptions = _context.Subjects.Select(s => new SelectListItem
                 {
                     Value = s.Id.ToString(),

@@ -6,6 +6,11 @@
     <input type="hidden" asp-for="Schedule.Id" />
 
     <div class="form-group">
+        <label>День</label>
+        <select asp-for="Schedule.DayEntryId" class="form-control" asp-items="Model.DayOptions"></select>
+    </div>
+
+    <div class="form-group">
         <label>Предмет</label>
         <select asp-for="Schedule.SubjectId" class="form-control" asp-items="Model.SubjectOptions"></select>
     </div>
