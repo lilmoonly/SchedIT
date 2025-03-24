@@ -31,8 +31,14 @@
                 <tr>
                     <td>@schedule.TimeEntry?.Value</td>
                     <td>@schedule.Subject?.Name</td>
-                    <td>@schedule.Teacher?.FullName</td>
-                    <td>@schedule.Classroom?.Number, @schedule.Classroom?.Building</td>
+                    <td>
+                        @schedule.Teacher?.FullName<br />
+                        <small>@schedule.Teacher?.Position — @schedule.Teacher?.Faculty</small>
+                    </td>
+                    <td>
+                        @schedule.Classroom?.Number, @schedule.Classroom?.Building<br />
+                        <small>@schedule.Classroom?.Capacity місць, @schedule.Classroom?.Equipment</small>
+                    </td>
                 </tr>
             }
         </tbody>

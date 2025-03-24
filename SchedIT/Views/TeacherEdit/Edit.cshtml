@@ -27,7 +27,10 @@
 
     <div class="form-group">
         <label asp-for="Faculty" class="control-label">Факультет</label>
-        <input asp-for="Faculty" class="form-control" />
+        <select asp-for="Faculty" class="form-control">
+            <option value="ФПМІ">Факультет прикладної інформатики та a математики</option>
+            <option value="ФММ">Факультет механіко математичний</option>
+        </select>
         <span asp-validation-for="Faculty" class="text-danger"></span>
     </div>
 
