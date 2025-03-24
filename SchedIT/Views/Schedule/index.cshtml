@@ -1,9 +1,29 @@
-@model List<string>
+@model IEnumerable<MyMvcApp.Models.Schedule>
 
-<h1>Розклад занять</h1>
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@item</li>
-    }
-</ul>
+@{
+    ViewData["Title"] = "Розклад";
+}
+
+<h2>Розклад</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Час</th>
+            <th>Предмет</th>
+            <th>Викладач</th>
+            <th>Аудиторія</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var schedule in Model)
+        {
+            <tr>
+                <td>@schedule.TimeEntry?.Value</td>
+                <td>@schedule.Subject?.Name</td>
+                <td>@schedule.Teacher?.FullName</td>
+                <td>@schedule.Classroom?.Number, @schedule.Classroom?.Building</td>
+            </tr>
+        }
+    </tbody>
+</table>
