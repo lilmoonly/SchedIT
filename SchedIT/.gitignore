@@ -1,0 +1,14 @@
+*.sln
+*.csproj
+.idea/
+
+bin/
+wwwroot/
+obj/
+
+schedule.db
+schedule.db-shm
+schedule.db-wal
+
+*.log
+*.tmp

@@ -1,0 +1,41 @@
+@model List<MyMvcApp.Models.Schedule>
+
+<h1>Редагування розкладу</h1>
+
+<a asp-controller="ScheduleEditor" asp-action="Add" class="btn btn-success mb-3">Додати</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Пара</th>
+        <th>Час</th>
+        <th>Предмет</th>
+        <th>Викладач</th>
+        <th>Аудиторія</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.TimeEntry?.Value</td>
+            <td>@item.Subject?.Name</td>
+            <td>
+                @item.Teacher?.FullName<br />
+                <small>@item.Teacher?.Position — @item.Teacher?.Faculty</small>
+            </td>
+            <td>
+                @item.Classroom?.Number, @item.Classroom?.Building<br />
+                <small>@item.Classroom?.Capacity місць, @item.Classroom?.Equipment</small>
+            </td>
+            <td>
+                <a asp-controller="ScheduleEditor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    Редагувати
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
