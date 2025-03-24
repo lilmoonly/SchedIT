@@ -42,6 +42,18 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 
+    if (!db.Days.Any())
+    {
+        db.Days.AddRange(
+            new DayEntry { Value = "Понеділок" },
+            new DayEntry { Value = "Вівторок" },
+            new DayEntry { Value = "Середа" },
+            new DayEntry { Value = "Четвер" },
+            new DayEntry { Value = "П'ятниця" }
+        );
+        db.SaveChanges();
+    }
+
     // Додати викладача
     if (!db.Teachers.Any())
     {
@@ -79,8 +91,11 @@ using (var scope = app.Services.CreateScope())
     var time2Id = db.Times.FirstOrDefault(t => t.Value == "10:10 - 11:30")?.Id;
     var time3Id = db.Times.FirstOrDefault(t => t.Value == "11:50 - 13:10")?.Id;
 
+    var day1Id = db.Days.FirstOrDefault(t => t.Value == "Понеділок")?.Id;
+    var day2Id = db.Days.FirstOrDefault(t => t.Value == "Вівторок")?.Id;
+
     // Перевірка на null перед додаванням розкладу
-    if (time1Id != null && time2Id != null && time3Id != null)
+    if (time1Id != null && time2Id != null && time3Id != null && day1Id != null && day2Id != null)
     {
         // Додати розклад
         if (!db.Schedules.Any())
@@ -88,6 +103,7 @@ using (var scope = app.Services.CreateScope())
             db.Schedules.AddRange(
                 new Schedule
                 {
+                    DayEntryId = day1Id.Value,
                     TimeEntryId = time1Id.Value,
                     SubjectId = subjectMathId,
                     TeacherId = teacherId,
@@ -95,6 +111,7 @@ using (var scope = app.Services.CreateScope())
                 },
                 new Schedule
                 {
+                    DayEntryId = day1Id.Value,
                     TimeEntryId = time2Id.Value,
                     SubjectId = subjectPhysId,
                     TeacherId = teacherId,
@@ -102,6 +119,7 @@ using (var scope = app.Services.CreateScope())
                 },
                 new Schedule
                 {
+                    DayEntryId = day2Id.Value,
                     TimeEntryId = time3Id.Value,
                     SubjectId = subjectProgId,
                     TeacherId = teacherId,

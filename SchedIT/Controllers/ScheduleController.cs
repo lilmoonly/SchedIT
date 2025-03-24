@@ -22,6 +22,7 @@ namespace MyMvcApp.Controllers
             var schedules = await _context.Schedules
                 .Include(s => s.Subject)
                 .Include(s => s.TimeEntry)
+                .Include(s => s.DayEntry)
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
                 .ToListAsync();

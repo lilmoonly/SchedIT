@@ -9,6 +9,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>День</th>
             <th>Час</th>
             <th>Предмет</th>
             <th>Викладач</th>
@@ -19,6 +20,7 @@
         @foreach (var schedule in Model)
         {
             <tr>
+                <td>@schedule.DayEntry?.Value</td>
                 <td>@schedule.TimeEntry?.Value</td>
                 <td>@schedule.Subject?.Name</td>
                 <td>@schedule.Teacher?.FullName</td>

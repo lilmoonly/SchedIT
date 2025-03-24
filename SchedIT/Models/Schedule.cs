@@ -9,6 +9,9 @@ namespace MyMvcApp.Models
         public int Id { get; set; }
 
         [Required]
+        public int DayEntryId { get; set; }
+
+        [Required]
         public int SubjectId { get; set; }
 
         [Required]
@@ -19,6 +22,9 @@ namespace MyMvcApp.Models
 
         [Required]
         public int ClassroomId { get; set; }
+        
+        [ForeignKey("DayEntryId")]
+        public DayEntry? DayEntry { get; set; }
 
         [ForeignKey("SubjectId")]
         public Subject? Subject { get; set; }
