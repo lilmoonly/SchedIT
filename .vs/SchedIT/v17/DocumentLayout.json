@@ -1,0 +1,542 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Legion\\Desktop\\SchedIT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\ScheduleController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleEditorController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\ScheduleEditorController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Data\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Data\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\Teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewStart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\_ViewStart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewImports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\_ViewImports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\TeacherEdit\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\TeacherEdit\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Teacher\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Teacher\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\ScheduleEditor\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\ScheduleEditor\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\ScheduleEditor\\Add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Schedule\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Schedule\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Home\\Privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\EditClassroom\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\EditClassroom\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Classroom\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Views\\Classroom\\Create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\TimeEntry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\TimeEntry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\Subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ScheduleFormViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\ScheduleFormViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\Schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ErrorViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\ErrorViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\DayEntry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\DayEntry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Classroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Models\\Classroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherEditController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\TeacherEditController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\TeacherController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\EditClassroomController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\EditClassroomController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ClassroomController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SchedIT\\Controllers\\ClassroomController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScheduleEditorController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleEditorController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\ScheduleEditorController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleEditorController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\ScheduleEditorController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:53:20.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ScheduleController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\ScheduleController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ScheduleController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\ScheduleController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:53:13.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "SchedIT\\Data\\AppDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:53:54.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Teacher.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Teacher.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\Teacher.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Teacher.cs",
+              "RelativeToolTip": "SchedIT\\Models\\Teacher.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:38.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Program.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Program.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Program.cs",
+              "RelativeToolTip": "SchedIT\\Program.cs",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAAAI8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:59:05.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\_ViewStart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:59:04.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\_ViewImports.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:59:02.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\TeacherEdit\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\TeacherEdit\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\TeacherEdit\\Edit.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\TeacherEdit\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:58:50.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Teacher\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Index.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Teacher\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:58:40.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Create.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Teacher\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Teacher\\Create.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Teacher\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:58:27.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\ScheduleEditor\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Index.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\ScheduleEditor\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:57:57.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\ScheduleEditor\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Edit.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\ScheduleEditor\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:57:35.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Add.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\ScheduleEditor\\Add.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\ScheduleEditor\\Add.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\ScheduleEditor\\Add.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:57:10.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Schedule\\index.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Schedule\\index.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Schedule\\index.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Schedule\\index.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:56:31.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:56:28.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:56:26.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\EditClassroom\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\EditClassroom\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\EditClassroom\\Edit.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\EditClassroom\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:56:18.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Classroom\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Index.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Classroom\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:55:24.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Create.cshtml",
+              "RelativeDocumentMoniker": "SchedIT\\Views\\Classroom\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Views\\Classroom\\Create.cshtml",
+              "RelativeToolTip": "SchedIT\\Views\\Classroom\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T20:55:12.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TimeEntry.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\TimeEntry.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\TimeEntry.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\TimeEntry.cs",
+              "RelativeToolTip": "SchedIT\\Models\\TimeEntry.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:56.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Subject.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Subject.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\Subject.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Subject.cs",
+              "RelativeToolTip": "SchedIT\\Models\\Subject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:33.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ScheduleFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ScheduleFormViewModel.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\ScheduleFormViewModel.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ScheduleFormViewModel.cs",
+              "RelativeToolTip": "SchedIT\\Models\\ScheduleFormViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:23.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Schedule.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Schedule.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\Schedule.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Schedule.cs",
+              "RelativeToolTip": "SchedIT\\Models\\Schedule.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:17.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "SchedIT\\Models\\ErrorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:14.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "DayEntry.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\DayEntry.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\DayEntry.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\DayEntry.cs",
+              "RelativeToolTip": "SchedIT\\Models\\DayEntry.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:13.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Classroom.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Classroom.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Models\\Classroom.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Models\\Classroom.cs",
+              "RelativeToolTip": "SchedIT\\Models\\Classroom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:54:00.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "TeacherEditController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherEditController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\TeacherEditController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherEditController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\TeacherEditController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:53:47.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "TeacherController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\TeacherController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\TeacherController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\TeacherController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:53:30.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "EditClassroomController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\EditClassroomController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\EditClassroomController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\EditClassroomController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\EditClassroomController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:52:47.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ClassroomController.cs",
+              "DocumentMoniker": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ClassroomController.cs",
+              "RelativeDocumentMoniker": "SchedIT\\Controllers\\ClassroomController.cs",
+              "ToolTip": "C:\\Users\\Legion\\Desktop\\SchedIT\\SchedIT\\Controllers\\ClassroomController.cs",
+              "RelativeToolTip": "SchedIT\\Controllers\\ClassroomController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T20:52:04.617Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
