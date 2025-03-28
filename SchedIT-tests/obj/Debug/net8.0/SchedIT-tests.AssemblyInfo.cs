@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchedIT-tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff260505dd91c502ec625f04a6b0e0fa5dddb530")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41b56e73be76f23de5ae808ec9445719709be0c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchedIT-tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchedIT-tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

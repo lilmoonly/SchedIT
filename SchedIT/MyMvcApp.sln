@@ -5,6 +5,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMvcApp", "MyMvcApp.csproj", "{D76827D5-89F6-81A6-8EF5-0164960752AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedIT-tests", "..\SchedIT-tests\SchedIT-tests.csproj", "{B4C21C9A-8133-4EF5-AAA1-932255D3D3EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D76827D5-89F6-81A6-8EF5-0164960752AD} = {D76827D5-89F6-81A6-8EF5-0164960752AD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
