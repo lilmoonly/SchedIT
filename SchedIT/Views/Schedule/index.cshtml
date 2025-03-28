@@ -1,13 +1,13 @@
 @model IEnumerable<MyMvcApp.Models.Schedule>
 
-@{
+    @{
     ViewData["Title"] = "Розклад";
-}
+    }
 
-<h2>Розклад</h2>
-<br>
+    <h2>Розклад</h2>
+    <br>
 
-@foreach (var group in Model.GroupBy(s => s.DayEntry?.Value))
+    @foreach (var group in Model.GroupBy(s => s.DayEntry?.Value))
 {
     <h4>@group.Key</h4>
     <table class="table table-bordered table-striped" style="table-layout: fixed; width: 100%;">
@@ -28,18 +28,18 @@
         <tbody>
             @foreach (var schedule in group)
             {
-                <tr>
-                    <td>@schedule.TimeEntry?.Value</td>
-                    <td>@schedule.Subject?.Name</td>
-                    <td>
-                        @schedule.Teacher?.FullName<br />
-                        <small>@schedule.Teacher?.Position — @schedule.Teacher?.Faculty</small>
-                    </td>
-                    <td>
-                        @schedule.Classroom?.Number, @schedule.Classroom?.Building<br />
-                        <small>@schedule.Classroom?.Capacity місць, @schedule.Classroom?.Equipment</small>
-                    </td>
-                </tr>
+            <tr>
+                <td>@schedule.TimeEntry?.Value</td>
+                <td>@schedule.Subject?.Name</td>
+                <td>
+                    @schedule.Teacher?.ShortName<br />
+                    <small>@schedule.Teacher?.Position</small>
+                </td>
+                <td>
+                    @schedule.Classroom?.Number, @schedule.Classroom?.Building<br />
+
+                </td>
+            </tr>
             }
         </tbody>
     </table>

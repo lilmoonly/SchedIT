@@ -59,9 +59,9 @@ using (var scope = app.Services.CreateScope())
     {
         db.Teachers.Add(new Teacher
         {
-            FullName = "Олексій Ляшко",
+            FullName = "Ляшко Олексій Володимирович",
             Position = "Доцент",
-            Faculty = "ФКН"
+            Faculty = "ФПМІ"
         });
         db.SaveChanges();
     }
@@ -74,7 +74,7 @@ using (var scope = app.Services.CreateScope())
             Number = "101",
             Building = "Головний корпус",
             Capacity = 30,
-            Equipment = "Проектор"
+            Equipment = "Проєктор"
         });
         db.SaveChanges();
     }
