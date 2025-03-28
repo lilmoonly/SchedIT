@@ -153,3 +153,4 @@ C:\Users\Legion\Desktop\SchedIT\SchedIT-tests\obj\Debug\net8.0\refint\SchedIT-te
 C:\Users\Legion\Desktop\SchedIT\SchedIT-tests\obj\Debug\net8.0\SchedIT-tests.pdb
 C:\Users\Legion\Desktop\SchedIT\SchedIT-tests\obj\Debug\net8.0\SchedIT-tests.genruntimeconfig.cache
 C:\Users\Legion\Desktop\SchedIT\SchedIT-tests\obj\Debug\net8.0\ref\SchedIT-tests.dll
+C:\Users\Legion\Desktop\SchedIT\SchedIT-tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
