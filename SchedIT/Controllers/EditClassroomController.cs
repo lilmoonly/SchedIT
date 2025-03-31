@@ -36,11 +36,24 @@ namespace MyMvcApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Update(classroom);
+                var existing = await _context.Classrooms.FindAsync(id);
+                if (existing == null)
+                {
+                    return NotFound();
+                }
+
+                // Update only necessary properties
+                existing.Number = classroom.Number;
+                existing.Building = classroom.Building;
+                existing.Capacity = classroom.Capacity;
+                existing.Equipment = classroom.Equipment;
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Classroom");
             }
+
             return View(classroom);
         }
+
     }
 }

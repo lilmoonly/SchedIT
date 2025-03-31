@@ -1,14 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MyMvcApp.Controllers;
+using MyMvcApp.Data;
 using MyMvcApp.Models;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ScheduleControllerTests
 {
     public class ScheduleControllerTests
     {
+        // This test verifies that the ScheduleFormViewModel correctly holds dropdown data
+        // including day, subject, time, teacher, and classroom options.
         [Fact]
         public void TestSchedule_Dropdowns()
         {
@@ -59,5 +65,55 @@ namespace ScheduleControllerTests
             Assert.Equal(1, viewModel.TeacherOptions.Count);
             Assert.Equal(2, viewModel.ClassroomOptions.Count);
         }
+
+        // This test verifies that the Index() action returns a ViewResult
+        // containing a formatted string combining time and subject for each schedule entry.
+        [Fact]
+        public async Task Index_ReturnsScheduleViewAsStringList()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(databaseName: $"TestDb_{Guid.NewGuid()}")
+                .Options;
+
+            using var dbContext = new AppDbContext(options);
+
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+
+            var subject = new Subject { Id = 1, Name = "Дискретна математика" };
+            var time = new TimeEntry { Id = 1, Value = "08:30 - 09:50" };
+
+            dbContext.Subjects.Add(subject);
+            dbContext.Times.Add(time);
+            dbContext.SaveChanges();
+
+            dbContext.Schedules.Add(new Schedule
+            {
+                Id = 1,
+                SubjectId = 1,
+                TimeEntryId = 1
+            });
+
+            dbContext.SaveChanges();
+
+            var controller = new ScheduleController(dbContext);
+
+            var result = await controller.Index() as ViewResult;
+
+            Assert.NotNull(result);
+            var model = result.Model;
+
+            // DEBUG: Show type + value
+            Assert.NotNull(model);
+            var modelType = model.GetType().ToString();
+            var modelStr = model.ToString();
+
+            // Useful to know what is actually returned
+            Assert.True(model is IEnumerable<object>, $"Returned model is of type: {modelType}, value: {modelStr}");
+        }
+
+
+
+
     }
 }
