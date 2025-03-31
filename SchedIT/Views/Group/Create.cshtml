@@ -14,8 +14,11 @@
     </div>
 
     <div class="form-group">
-        <label>Факультет</label>
-        <select asp-for="Group.Faculty" class="form-control" asp-items="Model.FacultiesOptions"></select>
+        <label asp-for="Group.FacultyId" class="control-label">Факультет</label>
+        <select asp-for="Group.FacultyId" class="form-control" asp-items="Model.FacultiesOptions">
+            <option value="">Select Faculty</option>
+        </select>
+        <span asp-validation-for="Group.FacultyId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Зберегти</button>
