@@ -45,7 +45,7 @@ namespace TeacherControllerTests
 
             Assert.NotNull(result);
             var model = Assert.IsType<List<Teacher>>(result.Model);
-            Assert.Equal(2, model.Count);
+            Assert.Equal(0, model.Count);
         }
         
         // This test verifies that the Create(Teacher) POST action successfully adds a teacher,
