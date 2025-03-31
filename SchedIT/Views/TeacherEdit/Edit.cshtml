@@ -10,7 +10,7 @@
     <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
-        <label asp-for="FullName" class="control-label">Повне ім'я</label>
+        <label asp-for="FullName" class="control-label">ПІБ викладача</label>
         <input asp-for="FullName" class="form-control" />
         <span asp-validation-for="FullName" class="text-danger"></span>
     </div>
@@ -27,7 +27,11 @@
 
     <div class="form-group">
         <label asp-for="Faculty" class="control-label">Факультет</label>
-        <input asp-for="Faculty" class="form-control" />
+        <select asp-for="Faculty" class="form-control">
+            <option value="ФПМІ">Факультет прикладної математики та інформатики</option>
+            <option value="ММФ">Механіко-математичний факультет</option>
+            <option value="ФЕЛКТ">Факультет електроніки та комп'ютерних технологій</option>
+        </select>
         <span asp-validation-for="Faculty" class="text-danger"></span>
     </div>
 

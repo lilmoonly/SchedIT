@@ -6,6 +6,7 @@ namespace MyMvcApp.Models
     {
         public Schedule Schedule { get; set; }
 
+        public List<SelectListItem> DayOptions { get; set; } = new();
         public List<SelectListItem> SubjectOptions { get; set; } = new();
         public List<SelectListItem> TimeOptions { get; set; } = new();
         public List<SelectListItem> TeacherOptions { get; set; } = new();

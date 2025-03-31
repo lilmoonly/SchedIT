@@ -6,6 +6,11 @@
     <input type="hidden" asp-for="Schedule.Id" />
 
     <div class="form-group">
+        <label>День</label>
+        <select asp-for="Schedule.DayEntryId" class="form-control" asp-items="Model.DayOptions"></select>
+    </div>
+
+    <div class="form-group">
         <label>Предмет</label>
         <select asp-for="Schedule.SubjectId" class="form-control" asp-items="Model.SubjectOptions"></select>
     </div>
@@ -24,7 +29,7 @@
     <div class="form-group">
         <label>Аудиторія</label>
         <select asp-for="Schedule.ClassroomId" class="form-control" asp-items="Model.ClassroomOptions"></select>
-        <small class="form-text text-muted">Формат: Номер, Будівля (Місткість місць)</small>
+        <small class="form-text text-muted">Формат: Номер, Будівля (Кількість місць)</small>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Зберегти</button>

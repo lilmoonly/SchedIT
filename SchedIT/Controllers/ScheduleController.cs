@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models;
@@ -18,18 +19,15 @@ namespace MyMvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
-            var schedule = await _context.Schedules
+            var schedules = await _context.Schedules
                 .Include(s => s.Subject)
                 .Include(s => s.TimeEntry)
+                .Include(s => s.DayEntry)
+                .Include(s => s.Teacher)
+                .Include(s => s.Classroom)
                 .ToListAsync();
 
-            var scheduleView = schedule
-                .Select(s => $"{s.TimeEntry?.Value}: {s.Subject?.Name}")
-                .ToList();
-
-
-            return View(scheduleView);
+            return View(schedules);
         }
     }
 }

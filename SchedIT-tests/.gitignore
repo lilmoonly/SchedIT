@@ -13,3 +13,12 @@ schedule.db-wal
 *.log
 *.tmp
 .vs/
+
+*.nuget.*
+project.assets.json
+project.nuget.cache
+*.cache
+
+*.coverage*
+*.xml
+*.cobertura.xml
