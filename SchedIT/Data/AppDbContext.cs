@@ -13,6 +13,7 @@ namespace MyMvcApp.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<TimeEntry> Times { get; set; }
         public DbSet<DayEntry> Days { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
 
     }
 }

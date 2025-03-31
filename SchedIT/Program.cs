@@ -66,6 +66,16 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 
+    if (!db.Faculties.Any())
+    {
+        db.Faculties.AddRange(
+            new Faculty { Name = "Факультет прикладної математики та інформатики" },
+            new Faculty { Name = "Механіко-математичний факультет" },
+            new Faculty { Name = "Факультет електроніки та комп’ютерних технологій" }
+        );
+        db.SaveChanges();
+    }
+
     // Додати аудиторію
     if (!db.Classrooms.Any())
     {

@@ -57,6 +57,25 @@ namespace MyMvcApp.Migrations
                     b.ToTable("Days");
                 });
 
+            modelBuilder.Entity("MyMvcApp.Models.Faculty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Faculties");
+                });
+
             modelBuilder.Entity("MyMvcApp.Models.Schedule", b =>
                 {
                     b.Property<int>("Id")
@@ -64,6 +83,9 @@ namespace MyMvcApp.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClassroomId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DayEntryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SubjectId")
@@ -78,6 +100,8 @@ namespace MyMvcApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClassroomId");
+
+                    b.HasIndex("DayEntryId");
 
                     b.HasIndex("SubjectId");
 
@@ -149,6 +173,12 @@ namespace MyMvcApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MyMvcApp.Models.DayEntry", "DayEntry")
+                        .WithMany()
+                        .HasForeignKey("DayEntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MyMvcApp.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
@@ -168,6 +198,8 @@ namespace MyMvcApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Classroom");
+
+                    b.Navigation("DayEntry");
 
                     b.Navigation("Subject");
 
