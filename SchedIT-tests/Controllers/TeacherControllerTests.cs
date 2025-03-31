@@ -25,7 +25,9 @@ namespace TeacherControllerTests
 
             return dbContext;
         }
-
+        
+        // This test verifies that the Index() action returns a ViewResult
+        // containing a list of teachers with exactly two entries.
         [Fact]
         public async Task TestIndex_ReturnsViewWithTeachers()
         {
@@ -45,7 +47,9 @@ namespace TeacherControllerTests
             var model = Assert.IsType<List<Teacher>>(result.Model);
             Assert.Equal(2, model.Count);
         }
-
+        
+        // This test verifies that the Create(Teacher) POST action successfully adds a teacher,
+        // redirects to the Index action, and only one teacher is present in the database.
         [Fact]
         public async Task TestCreateTeacher()
         {
@@ -59,7 +63,8 @@ namespace TeacherControllerTests
             Assert.Equal("Index", result.ActionName);
             Assert.Single(dbContext.Teachers); 
         }
-
+        
+        // This test verifies that the Create() GET action returns a ViewResult to show the form.
         [Fact]
         public void TestCreate_Get_ReturnsView()
         {

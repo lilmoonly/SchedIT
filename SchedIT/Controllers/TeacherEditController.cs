@@ -35,12 +35,22 @@ namespace MyMvcApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Teachers.Update(teacher);
+                var existing = await _context.Teachers.FindAsync(id);
+                if (existing == null)
+                {
+                    return NotFound();
+                }
+
+                // Update only necessary properties
+                existing.FullName = teacher.FullName;
+                existing.Position = teacher.Position;
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Teacher");
             }
 
             return View(teacher);
         }
+
     }
 }
