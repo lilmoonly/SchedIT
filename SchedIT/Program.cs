@@ -54,18 +54,6 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 
-    // Додати викладача
-    if (!db.Teachers.Any())
-    {
-        db.Teachers.Add(new Teacher
-        {
-            FullName = "Ляшко Олексій Володимирович",
-            Position = "Доцент",
-            Faculty = "ФПМІ"
-        });
-        db.SaveChanges();
-    }
-
     if (!db.Faculties.Any())
     {
         db.Faculties.AddRange(
@@ -73,6 +61,20 @@ using (var scope = app.Services.CreateScope())
             new Faculty { Name = "Механіко-математичний факультет" },
             new Faculty { Name = "Факультет електроніки та комп’ютерних технологій" }
         );
+        db.SaveChanges();
+    }
+    
+    var fac1Id = db.Faculties.FirstOrDefault(t => t.Name == "Факультет прикладної математики та інформатики")?.Id;
+
+    // Додати викладача
+    if (!db.Teachers.Any())
+    {
+        db.Teachers.Add(new Teacher
+        {
+            FullName = "Ляшко Олексій Володимирович",
+            Position = "Доцент",
+            FacultyId = fac1Id.Value
+        });
         db.SaveChanges();
     }
 

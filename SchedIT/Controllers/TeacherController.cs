@@ -4,6 +4,7 @@ using MyMvcApp.Data;
 using MyMvcApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyMvcApp.Controllers
 {
@@ -18,13 +19,14 @@ namespace MyMvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var teachers = await _context.Teachers.ToListAsync();
+            var teachers = await _context.Teachers.Include(t => t.Faculty).ToListAsync();
             return View(teachers);
         }
 
         public IActionResult Create()
         {
-            return View();
+            var viewModel = GetTeacherFormViewModel(new Teacher());
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -36,7 +38,65 @@ namespace MyMvcApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            return View(GetTeacherFormViewModel(teacher));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+                return NotFound();
+            
+            return View(GetTeacherFormViewModel(teacher));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Teacher teacher)
+        {
+            if (id != teacher.Id)
+                return BadRequest();
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(teacher);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(GetTeacherFormViewModel(teacher));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+                return NotFound();
+
             return View(teacher);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var teacher = await _context.Teachers.FindAsync(id);
+            if (teacher == null)
+                return NotFound();
+
+            _context.Teachers.Remove(teacher);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        private TeacherFormViewModel GetTeacherFormViewModel(Teacher teacher)
+        {
+            return new TeacherFormViewModel
+            {
+                Teacher = teacher,
+                FacultiesOptions = _context.Faculties.Select(s => new SelectListItem
+                {
+                    Value = s.Id.ToString(),
+                    Text = s.Name
+                }).ToList()
+            };
         }
     }
 }

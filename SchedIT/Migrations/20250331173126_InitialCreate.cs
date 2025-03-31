@@ -67,21 +67,6 @@ namespace MyMvcApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teachers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FullName = table.Column<string>(type: "TEXT", nullable: false),
-                    Position = table.Column<string>(type: "TEXT", nullable: false),
-                    Faculty = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teachers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Times",
                 columns: table => new
                 {
@@ -92,6 +77,27 @@ namespace MyMvcApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Times", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teachers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
+                    Position = table.Column<string>(type: "TEXT", nullable: false),
+                    FacultyId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Teachers_Faculties_FacultyId",
+                        column: x => x.FacultyId,
+                        principalTable: "Faculties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,14 +171,16 @@ namespace MyMvcApp.Migrations
                 name: "IX_Schedules_TimeEntryId",
                 table: "Schedules",
                 column: "TimeEntryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Teachers_FacultyId",
+                table: "Teachers",
+                column: "FacultyId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Faculties");
-
             migrationBuilder.DropTable(
                 name: "Schedules");
 
@@ -190,6 +198,9 @@ namespace MyMvcApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Times");
+
+            migrationBuilder.DropTable(
+                name: "Faculties");
         }
     }
 }

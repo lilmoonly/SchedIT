@@ -1,4 +1,4 @@
-@model MyMvcApp.Models.Teacher
+@model MyMvcApp.Models.TeacherFormViewModel
 
 @{
     ViewData["Title"] = "Редагувати викладача";
@@ -7,32 +7,27 @@
 <h2>Редагувати викладача</h2>
 
 <form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Teacher.Id" />
 
     <div class="form-group">
-        <label asp-for="FullName" class="control-label">ПІБ викладача</label>
-        <input asp-for="FullName" class="form-control" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
+        <label asp-for="Teacher.FullName" class="control-label">ПІБ викладача</label>
+        <input asp-for="Teacher.FullName" class="form-control" />
+        <span asp-validation-for="Teacher.FullName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Position" class="control-label">Посада</label>
-        <select asp-for="Position" class="form-control">
+        <label asp-for="Teacher.Position" class="control-label">Посада</label>
+        <select asp-for="Teacher.Position" class="form-control">
             <option value="Доцент">Доцент</option>
             <option value="Асистент">Асистент</option>
             <option value="Професор">Професор</option>
         </select>
-        <span asp-validation-for="Position" class="text-danger"></span>
+        <span asp-validation-for="Teacher.Position" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Faculty" class="control-label">Факультет</label>
-        <select asp-for="Faculty" class="form-control">
-            <option value="ФПМІ">Факультет прикладної математики та інформатики</option>
-            <option value="ММФ">Механіко-математичний факультет</option>
-            <option value="ФЕЛКТ">Факультет електроніки та комп'ютерних технологій</option>
-        </select>
-        <span asp-validation-for="Faculty" class="text-danger"></span>
+    <div class="form-group"></div>
+        <label>Факультет</label>
+        <select asp-for="Teacher.Faculty" class="form-control" asp-items="Model.FacultiesOptions"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Зберегти</button>

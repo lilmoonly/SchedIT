@@ -133,9 +133,8 @@ namespace MyMvcApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Faculty")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -146,6 +145,8 @@ namespace MyMvcApp.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
 
                     b.ToTable("Teachers");
                 });
@@ -206,6 +207,17 @@ namespace MyMvcApp.Migrations
                     b.Navigation("Teacher");
 
                     b.Navigation("TimeEntry");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.Teacher", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
                 });
 #pragma warning restore 612, 618
         }
