@@ -60,6 +60,17 @@ namespace ClassroomControllerTests
             Assert.Equal("Index", result.ActionName);
             Assert.Equal(3, dbContext.Classrooms.Count());
         }
+        
+        [Fact]
+        public void TestCreate_Get_ReturnsView()
+        {
+            var dbContext = GetDbContext();
+            var controller = new ClassroomController(dbContext);
+
+            var result = controller.Create() as ViewResult;
+
+            Assert.NotNull(result);
+        }
 
     }
 }
