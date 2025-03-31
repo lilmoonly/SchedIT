@@ -25,9 +25,12 @@
         <span asp-validation-for="Teacher.Position" class="text-danger"></span>
     </div>
 
-    <div class="form-group"></div>
-        <label>Факультет</label>
-        <select asp-for="Teacher.Faculty" class="form-control" asp-items="Model.FacultiesOptions"></select>
+    <div class="form-group">
+        <label asp-for="Teacher.FacultyId" class="control-label">Факультет</label>
+        <select asp-for="Teacher.FacultyId" class="form-control" asp-items="Model.FacultiesOptions">
+            <option value="">Select Faculty</option>
+        </select>
+        <span asp-validation-for="Teacher.FacultyId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Зберегти</button>
