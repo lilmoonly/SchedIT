@@ -77,7 +77,17 @@ using (var scope = app.Services.CreateScope())
         });
         db.SaveChanges();
     }
-
+    
+    if (!db.Groups.Any())
+    {
+        db.Groups.Add(new Group
+        {
+            Name = "ПМІ-31",
+            FacultyId = fac1Id.Value
+        });
+        db.SaveChanges();
+    }
+    
     // Додати аудиторію
     if (!db.Classrooms.Any())
     {

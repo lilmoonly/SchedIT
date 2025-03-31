@@ -17,4 +17,10 @@
     <PackageReference Include="Moq" Version="4.20.72" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Views\GroupEdit\Edit.cshtml" />
+    <AdditionalFiles Include="Views\Group\Create.cshtml" />
+    <AdditionalFiles Include="Views\Group\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

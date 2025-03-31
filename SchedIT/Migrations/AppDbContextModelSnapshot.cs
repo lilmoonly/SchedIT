@@ -76,6 +76,26 @@ namespace MyMvcApp.Migrations
                     b.ToTable("Faculties");
                 });
 
+            modelBuilder.Entity("MyMvcApp.Models.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("Groups");
+                });
+
             modelBuilder.Entity("MyMvcApp.Models.Schedule", b =>
                 {
                     b.Property<int>("Id")
@@ -164,6 +184,17 @@ namespace MyMvcApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Times");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.Group", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("MyMvcApp.Models.Schedule", b =>

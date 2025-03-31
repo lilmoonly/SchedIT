@@ -80,6 +80,26 @@ namespace MyMvcApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    FacultyId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Groups_Faculties_FacultyId",
+                        column: x => x.FacultyId,
+                        principalTable: "Faculties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -148,6 +168,11 @@ namespace MyMvcApp.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Groups_FacultyId",
+                table: "Groups",
+                column: "FacultyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schedules_ClassroomId",
                 table: "Schedules",
                 column: "ClassroomId");
@@ -181,6 +206,9 @@ namespace MyMvcApp.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Groups");
+
             migrationBuilder.DropTable(
                 name: "Schedules");
 

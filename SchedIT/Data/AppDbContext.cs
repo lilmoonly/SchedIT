@@ -14,6 +14,7 @@ namespace MyMvcApp.Data
         public DbSet<TimeEntry> Times { get; set; }
         public DbSet<DayEntry> Days { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
     }
 }
