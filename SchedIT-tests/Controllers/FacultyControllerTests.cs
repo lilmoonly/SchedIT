@@ -38,7 +38,18 @@ namespace FacultyControllerTests
             var model = Assert.IsType<List<Faculty>>(result.Model);
             Assert.Single(model);
         }
+        
+        [Fact]
+        public void TestCreate_Get_ReturnsView()
+        {
+            var dbContext = GetDbContext();
+            var controller = new FacultyController(dbContext);
 
+            var result = controller.Create() as ViewResult;
+
+            Assert.NotNull(result);
+        }
+        
         [Fact]
         public async Task Create_ValidFaculty_RedirectsToIndex()
         {

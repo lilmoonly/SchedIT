@@ -42,6 +42,18 @@ namespace GroupControllerTests
             var model = Assert.IsType<List<Group>>(result.Model);
             Assert.Single(model);
         }
+        
+        [Fact]
+        public void TestCreate_Get_ReturnsView()
+        {
+            var dbContext = GetDbContext();
+            var controller = new GroupController(dbContext);
+
+            var result = controller.Create() as ViewResult;
+
+            Assert.NotNull(result);
+        }
+
 
         [Fact]
         public async Task Create_ValidGroup_RedirectsToIndex()
@@ -69,7 +81,26 @@ namespace GroupControllerTests
             var model = Assert.IsType<GroupFormViewModel>(result.Model);
             Assert.Equal(1, model.Group.Id);
         }
+        
+        [Fact]
+        public async Task Edit_ValidGroup_RedirectsToIndex()
+        {
+            var dbContext = GetDbContext();
+            var controller = new GroupController(dbContext);
+            var existingGroup = dbContext.Groups.FirstOrDefault(g => g.Id == 1);
+            var groupToUpdate = new Group { Id = 1, Name = "PMI-33", FacultyId = 1 };
+            
+            dbContext.Entry(existingGroup).State = EntityState.Detached; 
 
+            var result = await controller.Edit(1, groupToUpdate) as RedirectToActionResult;
+
+            Assert.NotNull(result);
+            Assert.Equal("Index", result.ActionName);
+            Assert.Equal(1, dbContext.Groups.Count()); 
+            Assert.Equal("PMI-33", dbContext.Groups.First().Name);
+        }
+
+        
         [Fact]
         public async Task Edit_InvalidId_ReturnsNotFound()
         {
