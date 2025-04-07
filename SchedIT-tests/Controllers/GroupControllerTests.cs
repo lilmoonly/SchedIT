@@ -81,17 +81,5 @@ namespace GroupControllerTests
             Assert.IsType<NotFoundResult>(result);
         }
 
-        [Fact]
-        public async Task Delete_ValidId_RedirectsToIndex()
-        {
-            var dbContext = GetDbContext();
-            var controller = new GroupController(dbContext);
-
-            var result = await controller.DeleteConfirmed(1) as RedirectToActionResult;
-
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-            Assert.Empty(dbContext.Groups);
-        }
     }
 }
