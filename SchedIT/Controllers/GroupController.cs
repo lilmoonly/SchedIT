@@ -6,11 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace MyMvcApp.Controllers;
-
-public class GroupController : Controller
+namespace MyMvcApp.Controllers
 {
-            private readonly AppDbContext _context;
+    public class GroupController : Controller
+    {
+        private readonly AppDbContext _context;
 
         public GroupController(AppDbContext context)
         {
@@ -65,17 +65,8 @@ public class GroupController : Controller
             return View(GetGroupFormViewModel(group));
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
-        {
-            var group = await _context.Groups.FindAsync(id);
-            if (group == null)
-                return NotFound();
-
-            return View(group);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var group = await _context.Groups.FindAsync(id);
             if (group == null)
@@ -98,4 +89,5 @@ public class GroupController : Controller
                 }).ToList()
             };
         }
+    }
 }
