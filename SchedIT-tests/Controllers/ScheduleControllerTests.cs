@@ -9,10 +9,53 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
+
 namespace ScheduleControllerTests
 {
     public class ScheduleControllerTests
     {
+        
+        private AppDbContext GetDbContext()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
+
+            var dbContext = new AppDbContext(options);
+
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+
+            // Наповнюємо необхідними сутностями для Schedule
+            dbContext.Times.AddRange(
+                new TimeEntry { Id = 1, Value = "08:30 - 09:50" },
+                new TimeEntry { Id = 2, Value = "10:10 - 11:30" }
+            );
+
+            dbContext.Subjects.AddRange(
+                new Subject { Id = 1, Name = "Дискретна математика" },
+                new Subject { Id = 2, Name = "Фізика" }
+            );
+
+            dbContext.Teachers.Add(
+                new Teacher { Id = 1, FullName = "Чорна Марта Олегівна" }
+            );
+
+            dbContext.Classrooms.AddRange(
+                new Classroom { Id = 1, Number = "111", Building = "Головний корпус", Capacity = 30},
+                new Classroom { Id = 2, Number = "261", Building = "Головний корпус", Capacity = 70 }
+            );
+
+            dbContext.Days.AddRange(
+                new DayEntry { Id = 1, Value = "Понеділок" },
+                new DayEntry { Id = 2, Value = "Вівторок" }
+            );
+
+            dbContext.SaveChanges();
+
+            return dbContext;
+        }
+
         // This test verifies that the ScheduleFormViewModel correctly holds dropdown data
         // including day, subject, time, teacher, and classroom options.
         [Fact]
@@ -111,9 +154,18 @@ namespace ScheduleControllerTests
             // Useful to know what is actually returned
             Assert.True(model is IEnumerable<object>, $"Returned model is of type: {modelType}, value: {modelStr}");
         }
+        
+        [Fact]
+        public void Add_Get_ReturnsView()
+        {
+            var dbContext = GetDbContext();
+            var controller = new ScheduleEditorController(dbContext);
 
+            var result = controller.Add() as ViewResult;
 
-
-
+            Assert.NotNull(result);
+            Assert.IsType<ScheduleFormViewModel>(result.Model); 
+        }
+        
     }
 }
