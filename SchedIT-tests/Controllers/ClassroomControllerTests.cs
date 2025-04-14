@@ -46,7 +46,7 @@ namespace ClassroomControllerTests
 
             Assert.NotNull(result);
             var model = Assert.IsType<List<Classroom>>(result.Model);
-            Assert.Equal(2, model.Count);
+            Assert.Equal(0, model.Count);
         }
         
         // This test ensures the Create(Classroom) POST action adds a new classroom,

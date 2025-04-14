@@ -15,8 +15,10 @@ namespace MyMvcApp.Models
         public string Position { get; set; } = string.Empty;
 
         [Required]
-        public string Faculty { get; set; } = string.Empty;
-
+        public int FacultyId { get; set; }
+        
+        [ForeignKey("FacultyId")]
+        public Faculty? Faculty { get; set; }
 
         public string ShortName
         {

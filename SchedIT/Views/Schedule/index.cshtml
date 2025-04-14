@@ -1,46 +1,77 @@
 @model IEnumerable<MyMvcApp.Models.Schedule>
 
-    @{
-    ViewData["Title"] = "Розклад";
-    }
+@{
+ViewData["Title"] = "Розклад";
 
-    <h2>Розклад</h2>
-    <br>
-
-    @foreach (var group in Model.GroupBy(s => s.DayEntry?.Value))
+var daysOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
 {
-    <h4>@group.Key</h4>
-    <table class="table table-bordered table-striped" style="table-layout: fixed; width: 100%;">
-        <colgroup>
-            <col style="width: 20%;" />
-            <col style="width: 30%;" />
-            <col style="width: 25%;" />
-            <col style="width: 25%;" />
-        </colgroup>
-        <thead>
-            <tr>
-                <th>Час</th>
-                <th>Предмет</th>
-                <th>Викладач</th>
-                <th>Аудиторія</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var schedule in group)
-            {
-            <tr>
-                <td>@schedule.TimeEntry?.Value</td>
-                <td>@schedule.Subject?.Name</td>
-                <td>
-                    @schedule.Teacher?.ShortName<br />
-                    <small>@schedule.Teacher?.Position</small>
-                </td>
-                <td>
-                    @schedule.Classroom?.Number, @schedule.Classroom?.Building<br />
+{ "Понеділок", 1 },
+{ "Вівторок", 2 },
+{ "Середа", 3 },
+{ "Четвер", 4 },
+{ "П’ятниця", 5 },
+{ "Субота", 6 },
+{ "Неділя", 7 }
+};
 
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+var filteredSchedule = Model
+.Where(s => !string.IsNullOrWhiteSpace(s.DayEntry?.Value) && !string.IsNullOrWhiteSpace(s.TimeEntry?.Value));
+
+var orderedSchedule = filteredSchedule
+.OrderBy(s => daysOrder.TryGetValue(s.DayEntry.Value.Trim(), out int dayOrder) ? dayOrder : int.MaxValue)
+.ThenBy(s =>
+{
+
+var parts = s.TimeEntry.Value.Split('-');
+var startTimeText = parts.Length > 0 ? parts[0].Trim() : s.TimeEntry.Value.Trim();
+return TimeSpan.TryParse(startTimeText, out TimeSpan time) ? time : TimeSpan.MaxValue;
+})
+.ToList();
+
+var groupedSchedule = orderedSchedule
+.GroupBy(s => s.DayEntry.Value.Trim())
+.OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
 }
+
+<h2>Розклад</h2>
+<br>
+
+@foreach (var group in groupedSchedule)
+{
+<h4>@group.Key</h4>
+<table class="table table-bordered table-striped" style="table-layout: fixed; width: 100%;">
+    <colgroup>
+        <col style="width: 20%;" />
+        <col style="width: 30%;" />
+        <col style="width: 25%;" />
+        <col style="width: 25%;" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Час</th>
+        <th>Предмет</th>
+        <th>Викладач</th>
+        <th>Аудиторія</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var schedule in group)
+    {
+    <tr>
+        <td>@schedule.TimeEntry?.Value</td>
+        <td>@schedule.Subject?.Name</td>
+        <td>
+            @schedule.Teacher?.ShortName<br />
+            <small>@schedule.Teacher?.Position</small>
+        </td>
+        <td>
+            @schedule.Classroom?.Number, @schedule.Classroom?.Building
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
+
+
+

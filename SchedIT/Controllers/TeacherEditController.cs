@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models;
 using System.Linq;
@@ -22,34 +24,42 @@ namespace MyMvcApp.Controllers
             {
                 return NotFound();
             }
-            return View(teacher);
+
+            var viewModel = new TeacherFormViewModel
+            {
+                Teacher = teacher,
+                FacultiesOptions = await _context.Faculties.Select(f => new SelectListItem
+                {
+                    Value = f.Id.ToString(),
+                    Text = f.Name
+                }).ToListAsync()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Teacher teacher)
+        public async Task<IActionResult> Edit(int id, TeacherFormViewModel viewModel)
         {
-            if (id != teacher.Id)
+            if (id != viewModel.Teacher.Id)
             {
                 return BadRequest();
             }
 
             if (ModelState.IsValid)
             {
-                var existing = await _context.Teachers.FindAsync(id);
-                if (existing == null)
-                {
-                    return NotFound();
-                }
-
-                // Update only necessary properties
-                existing.FullName = teacher.FullName;
-                existing.Position = teacher.Position;
-
+                _context.Teachers.Update(viewModel.Teacher);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Teacher");
             }
 
-            return View(teacher);
+            viewModel.FacultiesOptions = await _context.Faculties.Select(f => new SelectListItem
+            {
+                Value = f.Id.ToString(),
+                Text = f.Name
+            }).ToListAsync();
+
+            return View(viewModel);
         }
 
     }

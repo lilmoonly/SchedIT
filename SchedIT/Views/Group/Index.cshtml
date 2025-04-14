@@ -1,0 +1,36 @@
+@model IEnumerable<MyMvcApp.Models.Group>
+
+    @{
+    ViewData["Title"] = "Список груп";
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Список груп</h2>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Назва групи</th>
+                <th>Факультет</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var group in Model)
+    {
+            <tr>
+                <td>@group.Name</td>
+                <td>@group.Faculty?.Name</td>
+                <td>
+                    <a asp-controller="GroupEdit" asp-action="Edit" asp-route-id="@group.Id" class="btn btn-warning">Редагувати</a>
+                </td>
+            </tr>
+    }
+            <tr>
+                <td colspan="4">
+                    <a class="btn btn-success" asp-action="Create">Додати</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>

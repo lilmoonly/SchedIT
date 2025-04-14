@@ -24,7 +24,7 @@
             <tr>
                 <td>@teacher.FullName</td>
                 <td>@teacher.Position</td>
-                <td>@teacher.Faculty</td>
+                <td>@teacher.Faculty?.Name</td>
                 <td>
                     <a asp-controller="TeacherEdit" asp-action="Edit" asp-route-id="@teacher.Id" class="btn btn-warning">Редагувати</a>
                 </td>

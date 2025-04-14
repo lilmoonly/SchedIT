@@ -57,6 +57,45 @@ namespace MyMvcApp.Migrations
                     b.ToTable("Days");
                 });
 
+            modelBuilder.Entity("MyMvcApp.Models.Faculty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Faculties");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("Groups");
+                });
+
             modelBuilder.Entity("MyMvcApp.Models.Schedule", b =>
                 {
                     b.Property<int>("Id")
@@ -64,6 +103,9 @@ namespace MyMvcApp.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClassroomId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DayEntryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SubjectId")
@@ -78,6 +120,8 @@ namespace MyMvcApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClassroomId");
+
+                    b.HasIndex("DayEntryId");
 
                     b.HasIndex("SubjectId");
 
@@ -109,9 +153,8 @@ namespace MyMvcApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Faculty")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -122,6 +165,8 @@ namespace MyMvcApp.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
 
                     b.ToTable("Teachers");
                 });
@@ -141,11 +186,28 @@ namespace MyMvcApp.Migrations
                     b.ToTable("Times");
                 });
 
+            modelBuilder.Entity("MyMvcApp.Models.Group", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
+                });
+
             modelBuilder.Entity("MyMvcApp.Models.Schedule", b =>
                 {
                     b.HasOne("MyMvcApp.Models.Classroom", "Classroom")
                         .WithMany()
                         .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyMvcApp.Models.DayEntry", "DayEntry")
+                        .WithMany()
+                        .HasForeignKey("DayEntryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -169,11 +231,24 @@ namespace MyMvcApp.Migrations
 
                     b.Navigation("Classroom");
 
+                    b.Navigation("DayEntry");
+
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
 
                     b.Navigation("TimeEntry");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.Teacher", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
                 });
 #pragma warning restore 612, 618
         }

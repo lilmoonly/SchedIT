@@ -8,89 +8,80 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyMvcApp.Controllers
 {
-    public class TeacherController : Controller
+    public class GroupController : Controller
     {
         private readonly AppDbContext _context;
 
-        public TeacherController(AppDbContext context)
+        public GroupController(AppDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var teachers = await _context.Teachers.Include(t => t.Faculty).ToListAsync();
-            return View(teachers);
+            var groups = await _context.Groups.Include(t => t.Faculty).ToListAsync();
+            return View(groups);
         }
 
         public IActionResult Create()
         {
-            var viewModel = GetTeacherFormViewModel(new Teacher());
+            var viewModel = GetGroupFormViewModel(new Group());
             return View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Teacher teacher)
+        public async Task<IActionResult> Create(Group group)
         {
             if (ModelState.IsValid)
             {
-                _context.Teachers.Add(teacher);
+                _context.Groups.Add(group);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(GetTeacherFormViewModel(teacher));
+            return View(GetGroupFormViewModel(group));
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null)
+            var group = await _context.Groups.FindAsync(id);
+            if (group == null)
                 return NotFound();
             
-            return View(GetTeacherFormViewModel(teacher));
+            return View(GetGroupFormViewModel(group));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Teacher teacher)
+        public async Task<IActionResult> Edit(int id, Group group)
         {
-            if (id != teacher.Id)
+            if (id != group.Id)
                 return BadRequest();
 
             if (ModelState.IsValid)
             {
-                _context.Update(teacher);
+                _context.Update(group);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(GetTeacherFormViewModel(teacher));
+            return View(GetGroupFormViewModel(group));
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null)
+            var group = await _context.Groups.FindAsync(id);
+            if (group == null)
                 return NotFound();
 
-            return View(teacher);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null)
-                return NotFound();
-
-            _context.Teachers.Remove(teacher);
+            _context.Groups.Remove(group);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private TeacherFormViewModel GetTeacherFormViewModel(Teacher teacher)
+        private GroupFormViewModel GetGroupFormViewModel(Group group)
         {
-            return new TeacherFormViewModel
+            return new GroupFormViewModel
             {
-                Teacher = teacher,
+                Group = group,
                 FacultiesOptions = _context.Faculties.Select(s => new SelectListItem
                 {
                     Value = s.Id.ToString(),
