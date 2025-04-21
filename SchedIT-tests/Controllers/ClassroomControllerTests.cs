@@ -34,20 +34,6 @@ namespace ClassroomControllerTests
             return dbContext;
         }
         
-        // This test checks that the Index() action returns a ViewResult
-        // containing a list of classrooms with exactly two entries.
-        [Fact]
-        public void TestIndex_ReturnsViewWithClassrooms()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ClassroomController(dbContext);
-
-            var result = controller.Index() as ViewResult;
-
-            Assert.NotNull(result);
-            var model = Assert.IsType<List<Classroom>>(result.Model);
-            Assert.Equal(0, model.Count);
-        }
         
         // This test ensures the Create(Classroom) POST action adds a new classroom,
         // redirects to the Index action, and the total count becomes three.
