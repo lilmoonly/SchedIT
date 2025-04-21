@@ -1,8 +1,32 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model MyMvcApp.Models.LoginViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (!User.Identity.IsAuthenticated)
+{
+    <h2>Увійти в систему</h2>
+    <form asp-action="Index" method="post">
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label>Пароль</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <button type="submit">Увійти</button>
+    </form>
+}
+else
+{
+    <h2>Вітаємо, @User.Identity.Name!</h2>
+    <p>Ваша роль: 
+        @{
+            var role = User.IsInRole("Admin") ? "Admin" :
+                User.IsInRole("Manager") ? "Manager" :
+                User.IsInRole("Client") ? "Client" : "Невідома";
+            @role
+        }
+    </p>
+    <a asp-controller="Account" asp-action="Logout">Вийти</a>
+}

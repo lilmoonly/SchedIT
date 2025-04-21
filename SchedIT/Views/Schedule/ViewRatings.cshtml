@@ -1,0 +1,22 @@
+@model IEnumerable<dynamic> 
+
+<h2>Оцінки розкладів</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Оцінка</th>
+        <th>Користувач (Email)</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var rating in Model)
+    {
+    <tr>
+        <td>@rating.Rating</td>
+        <td>@rating.UserEmail</td> 
+        <td>@rating.CreatedAt</td>
+    </tr>
+    }
+    </tbody>
+</table>

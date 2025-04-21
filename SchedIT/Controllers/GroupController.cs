@@ -5,11 +5,14 @@ using MyMvcApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class GroupController : Controller
     {
+        
         private readonly AppDbContext _context;
 
         public GroupController(AppDbContext context)
