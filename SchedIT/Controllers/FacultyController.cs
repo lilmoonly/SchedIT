@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class FacultyController : Controller
     {
         private readonly AppDbContext _context;

@@ -4,9 +4,12 @@ using MyMvcApp.Data;
 using MyMvcApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class EditClassroomController : Controller
     {
         private readonly AppDbContext _context;

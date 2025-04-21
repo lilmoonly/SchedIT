@@ -28,24 +28,42 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="Index">Головна</a>
                     </li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ScheduleEditor" asp-action="Index">Розклад</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="Index">Список викладачів</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Classroom" asp-action="Index">Список аудиторій</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Список груп</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Faculty" asp-action="Index">Список факультетів</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="ScheduleEditor" asp-action="Index">Розклад</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="ViewRatings">Оцінки розкладу</a>
                     </li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="Index">Список викладачів</a>
+                        <form method="post" asp-controller="Account" asp-action="Logout" style="display: inline;">
+                            <button type="submit" class="btn btn-custom">Вийти</button>
+                        </form>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Classroom" asp-action="Index">Список аудиторій</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Group" asp-action="Index">Список груп</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Faculty" asp-action="Index">Список факультетів</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Політика конфіденційності</a>
-                    </li>
+                    }
                 </ul>
             </div>
         </div>

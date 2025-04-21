@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.2" />
@@ -21,6 +22,12 @@
     <AdditionalFiles Include="Views\GroupEdit\Edit.cshtml" />
     <AdditionalFiles Include="Views\Group\Create.cshtml" />
     <AdditionalFiles Include="Views\Group\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Ratings\RateSchedule.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Ratings\ViewRatings.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Account\Login.cshtml" />
   </ItemGroup>
 
 </Project>

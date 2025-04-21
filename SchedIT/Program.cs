@@ -1,11 +1,29 @@
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=schedule.db"));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddControllersWithViews(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -15,6 +33,77 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
+    
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+    string[] roles = { "Admin", "SuperAdmin", "User" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+
+    string adminEmail = "admin@example.com";
+    string adminPassword = "Admin123!";
+
+    if (await userManager.FindByEmailAsync(adminEmail) == null)
+    {
+        var adminUser = new ApplicationUser
+        {
+            UserName = adminEmail,
+            Email = adminEmail,
+            FullName = "Admin"
+        };
+
+        var result = await userManager.CreateAsync(adminUser, adminPassword);
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+        }
+    }
+    
+    string clientEmail = "user@example.com";
+    string clientPassword = "User123!";
+
+    if (await userManager.FindByEmailAsync(clientEmail) == null)
+    {
+        var clientUser = new ApplicationUser
+        {
+            UserName = clientEmail,
+            Email = clientEmail,
+            FullName = "User"
+        };
+
+        var result = await userManager.CreateAsync(clientUser, clientPassword);
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(clientUser, "User");
+        }
+    }
+    
+    string superAdminEmail = "super@example.com";
+    string superAdminPassword = "Super123!";
+
+    if (await userManager.FindByEmailAsync(superAdminEmail) == null)
+    {
+        var SuperAdminUser = new ApplicationUser
+        {
+            UserName = superAdminEmail,
+            Email = superAdminEmail,
+            FullName = "Super Admin"
+        };
+
+        var result = await userManager.CreateAsync(SuperAdminUser, superAdminPassword);
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(SuperAdminUser, "SuperAdmin");
+        }
+    }
+
 
     // Додати Subjects
     if (!db.Subjects.Any())
@@ -156,6 +245,7 @@ using (var scope = app.Services.CreateScope())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
