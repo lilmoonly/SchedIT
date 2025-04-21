@@ -16,15 +16,16 @@
         </div>
         <button type="submit">Увійти</button>
     </form>
+    <a asp-controller="Account" asp-action="Register">Реєстрація</a>
 }
 else
 {
     <h2>Вітаємо, @User.Identity.Name!</h2>
     <p>Ваша роль: 
         @{
-            var role = User.IsInRole("Admin") ? "Admin" :
-                User.IsInRole("Manager") ? "Manager" :
-                User.IsInRole("Client") ? "Client" : "Невідома";
+            var role = User.IsInRole("Admin") ? "Адміністратор" :
+                User.IsInRole("User") ? "Користувач" :
+                User.IsInRole("SuperAdmin") ? "Головний Адміністратор" : "Невідома";
             @role
         }
     </p>

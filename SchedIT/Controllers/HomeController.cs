@@ -40,9 +40,9 @@ public class HomeController : Controller
             // Редирект в залежності від ролі
             if (roles.Contains("Admin"))
                 return RedirectToAction("Index", "Home");
-            else if (roles.Contains("Manager"))
+            else if (roles.Contains("User"))
                 return RedirectToAction("Index", "Home");
-            else if (roles.Contains("Client"))
+            else if (roles.Contains("SuperAdmin"))
                 return RedirectToAction("Index", "Home");
         }
 
