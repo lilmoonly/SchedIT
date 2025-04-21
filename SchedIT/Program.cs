@@ -6,12 +6,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=schedule.db"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -32,8 +30,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
-    
+    db.Database.Migrate(); // apply migrations instead of EnsureCreated
+
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -65,7 +63,7 @@ using (var scope = app.Services.CreateScope())
             await userManager.AddToRoleAsync(adminUser, "Admin");
         }
     }
-    
+
     string clientEmail = "user@example.com";
     string clientPassword = "User123!";
 
@@ -84,7 +82,7 @@ using (var scope = app.Services.CreateScope())
             await userManager.AddToRoleAsync(clientUser, "User");
         }
     }
-    
+
     string superAdminEmail = "super@example.com";
     string superAdminPassword = "Super123!";
 
@@ -104,8 +102,6 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
-
-    // Додати Subjects
     if (!db.Subjects.Any())
     {
         db.Subjects.AddRange(
@@ -116,7 +112,6 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 
-    // Додати TimeEntries
     if (!db.Times.Any())
     {
         db.Times.AddRange(
@@ -152,10 +147,9 @@ using (var scope = app.Services.CreateScope())
         );
         db.SaveChanges();
     }
-    
+
     var fac1Id = db.Faculties.FirstOrDefault(t => t.Name == "Факультет прикладної математики та інформатики")?.Id;
 
-    // Додати викладача
     if (!db.Teachers.Any())
     {
         db.Teachers.Add(new Teacher
@@ -166,7 +160,7 @@ using (var scope = app.Services.CreateScope())
         });
         db.SaveChanges();
     }
-    
+
     if (!db.Groups.Any())
     {
         db.Groups.Add(new Group
@@ -176,8 +170,7 @@ using (var scope = app.Services.CreateScope())
         });
         db.SaveChanges();
     }
-    
-    // Додати аудиторію
+
     if (!db.Classrooms.Any())
     {
         db.Classrooms.Add(new Classroom
@@ -190,7 +183,6 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 
-    // Отримати потрібні Id
     var teacherId = db.Teachers.First().Id;
     var classroomId = db.Classrooms.First().Id;
 
@@ -205,10 +197,8 @@ using (var scope = app.Services.CreateScope())
     var day1Id = db.Days.FirstOrDefault(t => t.Value == "Понеділок")?.Id;
     var day2Id = db.Days.FirstOrDefault(t => t.Value == "Вівторок")?.Id;
 
-    // Перевірка на null перед додаванням розкладу
     if (time1Id != null && time2Id != null && time3Id != null && day1Id != null && day2Id != null)
     {
-        // Додати розклад
         if (!db.Schedules.Any())
         {
             db.Schedules.AddRange(

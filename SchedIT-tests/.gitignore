@@ -22,3 +22,6 @@ project.nuget.cache
 *.coverage*
 *.xml
 *.cobertura.xml
+
+*.DotSettings.user
+

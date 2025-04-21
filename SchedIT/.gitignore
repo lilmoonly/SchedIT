@@ -13,3 +13,7 @@ schedule.db-wal
 *.log
 *.tmp
 .vs/
+
+
+*.DotSettings.user
+SchedIT/MyMvcApp.sln.DotSettings.user
