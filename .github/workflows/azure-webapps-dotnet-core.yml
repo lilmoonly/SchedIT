@@ -57,7 +57,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test with the dotnet CLI
-        run: dotnet test
+        run: dotnet build SchedIT/MyMvcApp/MyMvcApp.csproj --configuration Releasedotnet test
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
