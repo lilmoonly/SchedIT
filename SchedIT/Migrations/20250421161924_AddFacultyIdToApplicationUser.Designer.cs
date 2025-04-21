@@ -11,8 +11,8 @@ using MyMvcApp.Data;
 namespace MyMvcApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250421111015_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250421161924_AddFacultyIdToApplicationUser")]
+    partial class AddFacultyIdToApplicationUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
