@@ -53,7 +53,7 @@ namespace MyMvcApp.Controllers
             if (existingRating != null)
             {
                 existingRating.Rating = rating;
-                existingRating.CreatedAt = DateTime.Now; 
+                existingRating.CreatedAt = DateTime.UtcNow; 
             }
             else
             {
@@ -62,7 +62,7 @@ namespace MyMvcApp.Controllers
                     UserId = userId,
                     Rating = rating,
                     ScheduleId = scheduleId,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 };
                 _context.ScheduleRatings.Add(scheduleRating);
             }
