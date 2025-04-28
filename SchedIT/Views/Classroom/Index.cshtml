@@ -4,38 +4,44 @@
     ViewData["Title"] = "Аудиторії";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Список аудиторій</h2>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Список аудиторій</h2>
+        <a class="btn btn-success" asp-action="Create">
+            Додати аудиторію
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Номер</th>
+                    <th>Будівля</th>
+                    <th>Кількість місць</th>
+                    <th>Обладнання</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var classroom in Model)
+                {
+                    <tr>
+                        <td>@classroom.Number</td>
+                        <td>@classroom.Building</td>
+                        <td>@classroom.Capacity</td>
+                        <td>@classroom.Equipment</td>
+                        <td>
+                            <a asp-controller="EditClassroom" asp-action="Edit" asp-route-id="@classroom.Id" class="btn btn-outline-primary btn-sm">
+                                Редагувати
+                            </a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-
-<table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-    <tr>
-        <th>Номер</th>
-        <th>Будівля</th>
-        <th>Кількість місць</th>
-        <th>Обладнання</th>
-        <th>Дії</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var classroom in Model)
-    {
-        <tr>
-            <td>@classroom.Number</td>
-            <td>@classroom.Building</td>
-            <td>@classroom.Capacity</td>
-            <td>@classroom.Equipment</td>
-            <td>
-                <a asp-controller="EditClassroom" asp-action="Edit" asp-route-id="@classroom.Id" class="btn btn-warning">Редагувати</a>
-            </td>
-        </tr>
-    } 
-    <tr>
-        <td colspan="5">
-            <a class="btn btn-success" asp-action="Create">Додати</a>
-        </td>
-    </tr>
-    </tbody>
-</table>

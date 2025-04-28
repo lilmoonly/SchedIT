@@ -8,31 +8,31 @@
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="Number"></label>
+        <label asp-for="Number" class="control-label">Номер аудиторії</label>
         <input asp-for="Number" class="form-control" />
         <span asp-validation-for="Number" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Building"></label>
+        <label asp-for="Building" class="control-label">Корпус</label>
         <input asp-for="Building" class="form-control" />
         <span asp-validation-for="Building" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Capacity"></label>
+        <label asp-for="Capacity"  class="control-label">Місткість</label>
         <input asp-for="Capacity" type="number" class="form-control" />
         <span asp-validation-for="Capacity" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Equipment"></label>
+        <label asp-for="Equipment" class="control-label">Обладнання</label>
         <input asp-for="Equipment" class="form-control" />
         <span asp-validation-for="Equipment" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Save</button>
-    <a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
+    <button type="submit" class="btn btn-primary mt-2">Зберегти</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Повернутись до списку</a>
 </form>
 
 @section Scripts {
