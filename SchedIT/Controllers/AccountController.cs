@@ -33,7 +33,7 @@ namespace MyMvcApp.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-
+             
                 ModelState.AddModelError("", "Невірна спроба входу");
             }
             return View(model);
@@ -42,6 +42,7 @@ namespace MyMvcApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            TempData["ToastMessage"] = "Ви вийшли з системи.";
             return RedirectToAction("Index", "Home");
         }
 
@@ -66,6 +67,7 @@ namespace MyMvcApp.Controllers
                     await _userManager.AddToRoleAsync(user, "User");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    
                     return RedirectToAction("Index", "Home");
                 }
 

@@ -38,6 +38,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Teachers.Add(teacher);
                 await _context.SaveChangesAsync();
+                TempData["ToastMessage"] = "Дані про викладача додано.";
                 return RedirectToAction("Index");
             }
             return View(GetTeacherFormViewModel(teacher));
@@ -85,6 +86,7 @@ namespace MyMvcApp.Controllers
 
             _context.Teachers.Remove(teacher);
             await _context.SaveChangesAsync();
+            TempData["ToastMessage"] = "Дані про викладача видалено.";
             return RedirectToAction("Index");
         }
 

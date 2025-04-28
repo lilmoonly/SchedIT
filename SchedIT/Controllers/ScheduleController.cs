@@ -68,6 +68,7 @@ namespace MyMvcApp.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["ToastMessage"] = "Вашу оцінку відправлено.";
             return RedirectToAction("Index");
         }
 

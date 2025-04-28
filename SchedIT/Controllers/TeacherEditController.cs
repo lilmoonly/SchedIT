@@ -52,6 +52,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Teachers.Update(viewModel.Teacher);
                 await _context.SaveChangesAsync();
+                TempData["ToastMessage"] = "Дані про викладача змінено.";
                 return RedirectToAction("Index", "Teacher");
             }
 
