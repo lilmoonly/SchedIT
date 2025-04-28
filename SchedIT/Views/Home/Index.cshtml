@@ -2,32 +2,48 @@
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <h2>Увійти в систему</h2>
-    <form asp-action="Index" method="post">
-        <div>
-            <label>Email</label>
-            <input asp-for="Email" />
-            <span asp-validation-for="Email"></span>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+        <div class="card shadow-lg p-4" style="width: 400px;">
+            <h2 class="text-center mb-4">Увійти в систему</h2>
+
+            <form asp-action="Index" method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label fw-bold">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Password" class="form-label fw-bold">Пароль</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 shadow-sm mb-3">Увійти</button>
+
+                <div class="text-center">
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-link">Реєстрація</a>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Пароль</label>
-            <input asp-for="Password" type="password" />
-            <span asp-validation-for="Password"></span>
-        </div>
-        <button type="submit">Увійти</button>
-    </form>
-    <a asp-controller="Account" asp-action="Register">Реєстрація</a>
+    </div>
 }
 else
 {
-    <h2>Вітаємо, @User.Identity.Name!</h2>
-    <p>Ваша роль: 
-        @{
-            var role = User.IsInRole("Admin") ? "Адміністратор" :
-                User.IsInRole("User") ? "Користувач" :
-                User.IsInRole("SuperAdmin") ? "Головний Адміністратор" : "Невідома";
-            @role
-        }
-    </p>
-    <a asp-controller="Account" asp-action="Logout">Вийти</a>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+        <div class="card shadow-lg p-4 text-center" style="width: 400px;">
+            <h2>Вітаємо, @User.Identity.Name!</h2>
+            <p>
+                Ваша роль:
+                @{
+                    var role = User.IsInRole("Admin") ? "Адміністратор" :
+                    User.IsInRole("User") ? "Користувач" :
+                    User.IsInRole("SuperAdmin") ? "Головний Адміністратор" : "Невідома";
+                    @role
+                }
+            </p>
+            
+
+        </div>
+    </div>
 }
