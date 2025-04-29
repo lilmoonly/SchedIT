@@ -39,7 +39,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Groups.Add(group);
                 await _context.SaveChangesAsync();
-                TempData["ToastMessage"] = "Дані про групу успішно додано!";
+                TempData["ToastMessage"] = "Р“СЂСѓРїСѓ СѓСЃРїС–С€РЅРѕ РґРѕРґР°РЅРѕ!!";
                 return RedirectToAction("Index");
             }
             return View(GetGroupFormViewModel(group));
@@ -64,7 +64,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Update(group);
                 await _context.SaveChangesAsync();
-                TempData["ToastMessage"] = "Дані про групу успішно змінено.";
+                TempData["ToastMessage"] = "Р”Р°РЅС– РїСЂРѕ РіСЂСѓРїСѓ СѓСЃРїС–С€РЅРѕ Р·РјС–РЅРµРЅРѕ.";
                 return RedirectToAction("Index");
             }
             return View(GetGroupFormViewModel(group));
@@ -79,7 +79,7 @@ namespace MyMvcApp.Controllers
 
             _context.Groups.Remove(group);
             await _context.SaveChangesAsync();
-            TempData["ToastMessage"] = "Дані про групу видалено.";
+            TempData["ToastMessage"] = "Р“СЂСѓРїР° СѓСЃРїС–С€РЅРѕ РІРёРґР°Р»РµРЅР°.";
             return RedirectToAction("Index");
         }
 

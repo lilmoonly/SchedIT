@@ -52,7 +52,7 @@ namespace MyMvcApp.Controllers
                 existing.Equipment = classroom.Equipment;
 
                 await _context.SaveChangesAsync();
-                TempData["ToastMessage"] = "Дані про аудиторію змінено.";
+                TempData["ToastMessage"] = "Р”Р°РЅС– РїСЂРѕ Р°СѓРґРёС‚РѕСЂС–СЋ СѓСЃРїС–С€РЅРѕ Р·РјС–РЅРµРЅРѕ.";
                 return RedirectToAction("Index", "Classroom");
             }
 

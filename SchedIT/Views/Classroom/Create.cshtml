@@ -8,31 +8,31 @@
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="Number" class="control-label">Номер аудиторії</label>
+        <label asp-for="Number" class="control-label">РќРѕРјРµСЂ Р°СѓРґРёС‚РѕСЂС–С—</label>
         <input asp-for="Number" class="form-control" />
         <span asp-validation-for="Number" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Building" class="control-label">Корпус</label>
+        <label asp-for="Building" class="control-label">РљРѕСЂРїСѓСЃ</label>
         <input asp-for="Building" class="form-control" />
         <span asp-validation-for="Building" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Capacity"  class="control-label">Місткість</label>
+        <label asp-for="Capacity"  class="control-label">МіРњС–СЃС‚РєС–СЃС‚СЊ</label>
         <input asp-for="Capacity" type="number" class="form-control" />
         <span asp-validation-for="Capacity" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Equipment" class="control-label">Обладнання</label>
+        <label asp-for="Equipment" class="control-label">РћР±Р»Р°РґРЅР°РЅРЅСЏ</label>
         <input asp-for="Equipment" class="form-control" />
         <span asp-validation-for="Equipment" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Зберегти</button>
-    <a asp-action="Index" class="btn btn-secondary mt-2">Повернутись до списку</a>
+    <button type="submit" class="btn btn-primary mt-2">Р—Р±РµСЂРµРіС‚Рё</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">РџРѕРІРµСЂРЅСѓС‚РёСЃСЊ РґРѕ СЃРїРёСЃРєСѓ</a>
 </form>
 
 @section Scripts {
