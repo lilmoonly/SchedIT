@@ -1,36 +1,45 @@
 @model MyMvcApp.Models.ScheduleFormViewModel
 
-<h1>Редагувати розклад</h1>
+<div class="container mt-4">
+    <h2>Редагувати пару</h2>
 
-<form method="post">
-    <input type="hidden" asp-for="Schedule.Id" />
+    <form method="post" class="mt-3">
+        <input type="hidden" asp-for="Schedule.Id" />
 
-    <div class="form-group">
-        <label>День</label>
-        <select asp-for="Schedule.DayEntryId" class="form-control" asp-items="Model.DayOptions"></select>
-    </div>
+        @* День тижня *@
+        <div class="mb-3">
+            <label asp-for="Schedule.DayEntryId" class="form-label">День</label>
+            <select asp-for="Schedule.DayEntryId" class="form-select" asp-items="Model.DayOptions"></select>
+        </div>
 
-    <div class="form-group">
-        <label>Предмет</label>
-        <select asp-for="Schedule.SubjectId" class="form-control" asp-items="Model.SubjectOptions"></select>
-    </div>
+        @* Предмет *@
+        <div class="mb-3">
+            <label asp-for="Schedule.SubjectId" class="form-label">Предмет</label>
+            <select asp-for="Schedule.SubjectId" class="form-select" asp-items="Model.SubjectOptions"></select>
+        </div>
 
-    <div class="form-group">
-        <label>Час</label>
-        <select asp-for="Schedule.TimeEntryId" class="form-control" asp-items="Model.TimeOptions"></select>
-    </div>
+        @* Час *@
+        <div class="mb-3">
+            <label asp-for="Schedule.TimeEntryId" class="form-label">Час</label>
+            <select asp-for="Schedule.TimeEntryId" class="form-select" asp-items="Model.TimeOptions"></select>
+        </div>
 
-    <div class="form-group">
-        <label>Викладач</label>
-        <select asp-for="Schedule.TeacherId" class="form-control" asp-items="Model.TeacherOptions"></select>
-        <small class="form-text text-muted">Формат: Ім'я (Посада) — Факультет</small>
-    </div>
+        @* Викладач *@
+        <div class="mb-3">
+            <label asp-for="Schedule.TeacherId" class="form-label">Викладач</label>
+            <select asp-for="Schedule.TeacherId" class="form-select" asp-items="Model.TeacherOptions"></select>
+            <div class="form-text">Формат: Ім'я (Посада) — Факультет</div>
+        </div>
 
-    <div class="form-group">
-        <label>Аудиторія</label>
-        <select asp-for="Schedule.ClassroomId" class="form-control" asp-items="Model.ClassroomOptions"></select>
-        <small class="form-text text-muted">Формат: Номер, Будівля (Кількість місць)</small>
-    </div>
+        @* Аудиторія *@
+        <div class="mb-3">
+            <label asp-for="Schedule.ClassroomId" class="form-label">Аудиторія</label>
+            <select asp-for="Schedule.ClassroomId" class="form-select" asp-items="Model.ClassroomOptions"></select>
+            <div class="form-text">Формат: Номер, Будівля (Кількість місць)</div>
+        </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Зберегти</button>
-</form>
+        <button type="submit" class="btn btn-primary mt-3">
+            Зберегти зміни
+        </button>
+    </form>
+</div>

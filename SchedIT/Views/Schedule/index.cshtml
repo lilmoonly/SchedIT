@@ -1,93 +1,89 @@
+
 @model IEnumerable<MyMvcApp.Models.Schedule>
 
 @{
-ViewData["Title"] = "Розклад";
+    ViewData["Title"] = "Розклад";
 
-var daysOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-{
-{ "Понеділок", 1 },
-{ "Вівторок", 2 },
-{ "Середа", 3 },
-{ "Четвер", 4 },
-{ "П’ятниця", 5 },
-{ "Субота", 6 },
-{ "Неділя", 7 }
-};
-
-var filteredSchedule = Model
-.Where(s => !string.IsNullOrWhiteSpace(s.DayEntry?.Value) && !string.IsNullOrWhiteSpace(s.TimeEntry?.Value));
-
-var orderedSchedule = filteredSchedule
-.OrderBy(s => daysOrder.TryGetValue(s.DayEntry.Value.Trim(), out int dayOrder) ? dayOrder : int.MaxValue)
-.ThenBy(s =>
-{
-
-var parts = s.TimeEntry.Value.Split('-');
-var startTimeText = parts.Length > 0 ? parts[0].Trim() : s.TimeEntry.Value.Trim();
-return TimeSpan.TryParse(startTimeText, out TimeSpan time) ? time : TimeSpan.MaxValue;
-})
-.ToList();
-
-var groupedSchedule = orderedSchedule
-.GroupBy(s => s.DayEntry.Value.Trim())
-.OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
-}
-
-<h2>Розклад</h2>
-<br>
-
-@foreach (var group in groupedSchedule)
-{
-<h4>@group.Key</h4>
-<table class="table table-bordered table-striped" style="table-layout: fixed; width: 100%;">
-    <colgroup>
-        <col style="width: 20%;" />
-        <col style="width: 30%;" />
-        <col style="width: 25%;" />
-        <col style="width: 25%;" />
-    </colgroup>
-    <thead>
-    <tr>
-        <th>Час</th>
-        <th>Предмет</th>
-        <th>Викладач</th>
-        <th>Аудиторія</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var schedule in group)
+    var daysOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
     {
-        <tr>
-            <td>@schedule.TimeEntry?.Value</td>
-            <td>@schedule.Subject?.Name</td>
-            <td>
-                @schedule.Teacher?.ShortName<br />
-                <small>@schedule.Teacher?.Position</small>
-            </td>
-            <td>
-                @schedule.Classroom?.Number, @schedule.Classroom?.Building
-            </td>
-        </tr>
+        { "Понеділок", 1 }, { "Вівторок", 2 }, { "Середа", 3 }, { "Четвер", 4 },
+        { "П’ятниця", 5 }, { "Субота", 6 }, { "Неділя", 7 }
+    };
+
+    var filteredSchedule = Model
+        .Where(s => !string.IsNullOrWhiteSpace(s.DayEntry?.Value) && !string.IsNullOrWhiteSpace(s.TimeEntry?.Value));
+
+    var orderedSchedule = filteredSchedule
+        .OrderBy(s => daysOrder.TryGetValue(s.DayEntry.Value.Trim(), out int dayOrder) ? dayOrder : int.MaxValue)
+        .ThenBy(s =>
+        {
+            var parts = s.TimeEntry.Value.Split('-');
+            var startTimeText = parts.Length > 0 ? parts[0].Trim() : s.TimeEntry.Value.Trim();
+            return TimeSpan.TryParse(startTimeText, out TimeSpan time) ? time : TimeSpan.MaxValue;
+        })
+        .ToList();
+
+    var groupedSchedule = orderedSchedule
+        .GroupBy(s => s.DayEntry.Value.Trim())
+        .OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
+}
+
+<div class="container py-4">
+    <h2 class="text-center mb-4">Розклад</h2>
+
+    @foreach (var group in groupedSchedule)
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">@group.Key</h4>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Час</th>
+                            <th>Предмет</th>
+                            <th>Викладач</th>
+                            <th>Аудиторія</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var schedule in group)
+                        {
+                            <tr>
+                                <td>@schedule.TimeEntry?.Value</td>
+                                <td>@schedule.Subject?.Name</td>
+                                <td>
+                                    @schedule.Teacher?.ShortName<br/>
+                                    <small class="text-muted">@schedule.Teacher?.Position</small>
+                                </td>
+                                <td>@schedule.Classroom?.Number, @schedule.Classroom?.Building</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     }
-    </tbody>
-</table>
-}
-@if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
-{
-<div class="rating-section">
-    <h3>Оцініть розклад</h3>
-    <form method="post" asp-action="RateSchedule">
-        <div class="form-group">
-            <label for="rating">Оцінка (0-5):</label>
-            <input type="number" id="rating" name="rating" min="0" max="5" class="form-control" required />
+
+    @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+    {
+        <div class="card shadow-sm mt-5">
+            <div class="card-body">
+                <h3 class="card-title">Оцініть зручність розкладу</h3>
+                <form method="post" asp-action="RateSchedule">
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">за шкалою від 0 до 5:</label>
+                        <input type="number" id="rating" name="rating" min="0" max="5" class="form-control" required />
+                    </div>
+                    <input type="hidden" name="scheduleId" value="1" />
+                    <button type="submit" class="btn btn-success w-100">Відправити оцінку</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="hidden" name="scheduleId" value="1" /> 
-        </div>
-        <button type="submit" class="btn btn-primary">Відправити</button>
-    </form>
+    }
 </div>
-}
+
 
 
 

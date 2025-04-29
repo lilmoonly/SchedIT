@@ -1,22 +1,30 @@
-@model IEnumerable<dynamic> 
+@model IEnumerable<dynamic>
 
-<h2>Оцінки розкладів</h2>
-<table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-        <th>Оцінка</th>
-        <th>Користувач (Email)</th>
-        <th>Дата</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var rating in Model)
-    {
-    <tr>
-        <td>@rating.Rating</td>
-        <td>@rating.UserEmail</td> 
-        <td>@rating.CreatedAt</td>
-    </tr>
-    }
-    </tbody>
-</table>
+<div class="container py-4">
+    <h2 class="text-center mb-4">Оцінки розкладів</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-bordered table-striped table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Оцінка</th>
+                        <th>Користувач</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rating in Model)
+                    {
+                        <tr>
+                            <td>@rating.Rating</td>
+                            <td>@rating.UserEmail</td>
+                            <td>@rating.CreatedAt</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

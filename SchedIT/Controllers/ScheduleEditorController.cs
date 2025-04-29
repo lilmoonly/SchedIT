@@ -45,6 +45,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Schedules.Add(model.Schedule);
                 _context.SaveChanges();
+                TempData["ToastMessage"] = "Пару успішно додано!";
                 return RedirectToAction("Index");
             }
 
@@ -70,6 +71,7 @@ namespace MyMvcApp.Controllers
             {
                 _context.Schedules.Update(model.Schedule);
                 _context.SaveChanges();
+                TempData["ToastMessage"] = "Дані про пару успішно змінено.";
                 return RedirectToAction("Index");
             }
 

@@ -52,6 +52,7 @@ public class GroupEditController : Controller
         {
             _context.Groups.Update(viewModel.Group);
             await _context.SaveChangesAsync();
+            TempData["ToastMessage"] = "Дані про групу успішно змінено.";
             return RedirectToAction("Index", "Group");
         }
 

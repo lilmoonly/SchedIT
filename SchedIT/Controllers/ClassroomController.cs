@@ -34,6 +34,7 @@ namespace MyMvcApp.Controllers
             if (ModelState.IsValid)
             {
                 _context.Classrooms.Add(classroom);
+                TempData["ToastMessage"] = "Дані про аудиторію успішно додано!.";
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
