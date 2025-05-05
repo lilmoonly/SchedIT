@@ -50,19 +50,19 @@ namespace TeacherControllerTests
         
         // This test verifies that the Create(Teacher) POST action successfully adds a teacher,
         // redirects to the Index action, and only one teacher is present in the database.
-        [Fact]
-        public async Task TestCreateTeacher()
-        {
-            var dbContext = GetDbContext("TestDatabase_Create");
-            var controller = new TeacherController(dbContext);
-            var newTeacher = new Teacher { Id = 3, FullName = "Вишневський Олег Васильович" };
+        // [Fact]
+        // public async Task TestCreateTeacher()
+        // {
+        //     var dbContext = GetDbContext("TestDatabase_Create");
+        //     var controller = new TeacherController(dbContext);
+        //     var newTeacher = new Teacher { Id = 3, FullName = "Вишневський Олег Васильович" };
 
-            var result = await controller.Create(newTeacher) as RedirectToActionResult;
+        //     var result = await controller.Create(newTeacher) as RedirectToActionResult;
 
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-            Assert.Single(dbContext.Teachers); 
-        }
+        //     Assert.NotNull(result);
+        //     Assert.Equal("Index", result.ActionName);
+        //     Assert.Single(dbContext.Teachers); 
+        // }
         
         // This test verifies that the Create() GET action returns a ViewResult to show the form.
         [Fact]

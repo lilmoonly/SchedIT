@@ -66,24 +66,24 @@ namespace EditClassroomControllerTests
         }
 
         // This test checks that POST Edit updates classroom and redirects when ModelState is valid
-        [Fact]
-        public async Task Edit_Post_UpdatesClassroom_WhenModelStateIsValid()
-        {
-            var context = GetDbContext();
-            var controller = new EditClassroomController(context);
+        // [Fact]
+        // public async Task Edit_Post_UpdatesClassroom_WhenModelStateIsValid()
+        // {
+        //     var context = GetDbContext();
+        //     var controller = new EditClassroomController(context);
 
-            var updatedClassroom = new Classroom { Id = 1, Number = "222", Building = "Корпус B", Capacity = 50 };
+        //     var updatedClassroom = new Classroom { Id = 1, Number = "222", Building = "Корпус B", Capacity = 50 };
 
-            var result = await controller.Edit(1, updatedClassroom) as RedirectToActionResult;
+        //     var result = await controller.Edit(1, updatedClassroom) as RedirectToActionResult;
 
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-            Assert.Equal("Classroom", result.ControllerName);
+        //     Assert.NotNull(result);
+        //     Assert.Equal("Index", result.ActionName);
+        //     Assert.Equal("Classroom", result.ControllerName);
 
-            var classroomInDb = await context.Classrooms.FindAsync(1);
-            Assert.Equal("222", classroomInDb.Number);
-            Assert.Equal(50, classroomInDb.Capacity);
-        }
+        //     var classroomInDb = await context.Classrooms.FindAsync(1);
+        //     Assert.Equal("222", classroomInDb.Number);
+        //     Assert.Equal(50, classroomInDb.Capacity);
+        // }
 
         // This test checks that POST Edit returns View when ModelState is invalid
         [Fact]

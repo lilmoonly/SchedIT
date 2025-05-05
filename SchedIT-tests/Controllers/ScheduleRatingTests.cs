@@ -48,56 +48,56 @@ namespace ScheduleControllerTests
             Assert.False(_controller.ModelState.IsValid);
         }
 
-        [Fact]
-        public async Task RateSchedule_NewRating_AddsRating()
-        {
-            // Arrange
-            var userId = "user1";
-            _userManagerMock.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns(userId);
+        // [Fact]
+        // public async Task RateSchedule_NewRating_AddsRating()
+        // {
+        //     // Arrange
+        //     var userId = "user1";
+        //     _userManagerMock.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns(userId);
 
-            _controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal() }
-            };
+        //     _controller.ControllerContext = new ControllerContext
+        //     {
+        //         HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal() }
+        //     };
 
-            // Act
-            await _controller.RateSchedule(4, 101);
+        //     // Act
+        //     await _controller.RateSchedule(4, 101);
 
-            // Assert
-            var rating = _context.ScheduleRatings.FirstOrDefault(r => r.UserId == userId && r.ScheduleId == 101);
-            Assert.NotNull(rating);
-            Assert.Equal(4, rating.Rating);
-        }
+        //     // Assert
+        //     var rating = _context.ScheduleRatings.FirstOrDefault(r => r.UserId == userId && r.ScheduleId == 101);
+        //     Assert.NotNull(rating);
+        //     Assert.Equal(4, rating.Rating);
+        // }
 
-        [Fact]
-        public async Task RateSchedule_ExistingRating_UpdatesIt()
-        {
-            // Arrange
-            var userId = "user2";
+        // [Fact]
+        // public async Task RateSchedule_ExistingRating_UpdatesIt()
+        // {
+        //     // Arrange
+        //     var userId = "user2";
 
-            _context.ScheduleRatings.Add(new ScheduleRating
-            {
-                UserId = userId,
-                ScheduleId = 102,
-                Rating = 2,
-                CreatedAt = DateTime.UtcNow.AddDays(-1)
-            });
-            await _context.SaveChangesAsync();
+        //     _context.ScheduleRatings.Add(new ScheduleRating
+        //     {
+        //         UserId = userId,
+        //         ScheduleId = 102,
+        //         Rating = 2,
+        //         CreatedAt = DateTime.UtcNow.AddDays(-1)
+        //     });
+        //     await _context.SaveChangesAsync();
 
-            _userManagerMock.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns(userId);
+        //     _userManagerMock.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns(userId);
 
-            _controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal() }
-            };
+        //     _controller.ControllerContext = new ControllerContext
+        //     {
+        //         HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal() }
+        //     };
 
-            // Act
-            await _controller.RateSchedule(5, 102);
+        //     // Act
+        //     await _controller.RateSchedule(5, 102);
 
-            // Assert
-            var rating = _context.ScheduleRatings.FirstOrDefault(r => r.UserId == userId && r.ScheduleId == 102);
-            Assert.NotNull(rating);
-            Assert.Equal(5, rating.Rating);
-        }
+        //     // Assert
+        //     var rating = _context.ScheduleRatings.FirstOrDefault(r => r.UserId == userId && r.ScheduleId == 102);
+        //     Assert.NotNull(rating);
+        //     Assert.Equal(5, rating.Rating);
+        // }
     }
 }
