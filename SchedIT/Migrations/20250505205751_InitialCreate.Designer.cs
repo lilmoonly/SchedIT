@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyMvcApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250505182103_AddGroupToSchedule")]
-    partial class AddGroupToSchedule
+    [Migration("20250505205751_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
