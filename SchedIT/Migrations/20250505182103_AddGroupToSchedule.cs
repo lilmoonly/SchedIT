@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyMvcApp.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialPostgres : Migration
+    public partial class AddGroupToSchedule : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -278,7 +278,8 @@ namespace MyMvcApp.Migrations
                     SubjectId = table.Column<int>(type: "integer", nullable: false),
                     TimeEntryId = table.Column<int>(type: "integer", nullable: false),
                     TeacherId = table.Column<int>(type: "integer", nullable: false),
-                    ClassroomId = table.Column<int>(type: "integer", nullable: false)
+                    ClassroomId = table.Column<int>(type: "integer", nullable: false),
+                    GroupId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,6 +294,12 @@ namespace MyMvcApp.Migrations
                         name: "FK_Schedules_Days_DayEntryId",
                         column: x => x.DayEntryId,
                         principalTable: "Days",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -406,6 +413,11 @@ namespace MyMvcApp.Migrations
                 column: "DayEntryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schedules_GroupId",
+                table: "Schedules",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schedules_SubjectId",
                 table: "Schedules",
                 column: "SubjectId");
@@ -445,9 +457,6 @@ namespace MyMvcApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Groups");
-
-            migrationBuilder.DropTable(
                 name: "ScheduleRatings");
 
             migrationBuilder.DropTable(
@@ -464,6 +473,9 @@ namespace MyMvcApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Days");
+
+            migrationBuilder.DropTable(
+                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "Subjects");

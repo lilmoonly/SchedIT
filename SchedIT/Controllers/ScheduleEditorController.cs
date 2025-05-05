@@ -26,6 +26,7 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.TimeEntry)
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
+                .Include(s => s.Group)
                 .ToList();
 
             return View(schedules);
@@ -108,6 +109,11 @@ namespace MyMvcApp.Controllers
                 {
                     Value = c.Id.ToString(),
                     Text = $"{c.Number}, {c.Building} ({c.Capacity} місць)"
+                }).ToList(),
+                GroupOptions = _context.Groups.Select(g => new SelectListItem
+                {
+                    Value = g.Id.ToString(),
+                    Text = $"{g.Name} ({g.Faculty.Name})"
                 }).ToList()
             };
         }
