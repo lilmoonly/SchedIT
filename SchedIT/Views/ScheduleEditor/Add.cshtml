@@ -16,6 +16,13 @@
             <select asp-for="Schedule.SubjectId" class="form-select" asp-items="Model.SubjectOptions"></select>
         </div>
 
+        @* Група *@
+        <div class="mb-3">
+            <label asp-for="Schedule.GroupId" class="form-label">Група</label>
+            <select asp-for="Schedule.GroupId" class="form-select" asp-items="Model.GroupOptions"></select>
+            <div class="form-text">Формат: Назва групи (Факультет)</div>
+        </div>
+
         @* Час *@
         <div class="mb-3">
             <label asp-for="Schedule.TimeEntryId" class="form-label">Час</label>

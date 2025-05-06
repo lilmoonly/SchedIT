@@ -324,6 +324,9 @@ namespace MyMvcApp.Migrations
                     b.Property<int>("DayEntryId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("GroupId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("SubjectId")
                         .HasColumnType("integer");
 
@@ -338,6 +341,8 @@ namespace MyMvcApp.Migrations
                     b.HasIndex("ClassroomId");
 
                     b.HasIndex("DayEntryId");
+
+                    b.HasIndex("GroupId");
 
                     b.HasIndex("SubjectId");
 
@@ -514,6 +519,12 @@ namespace MyMvcApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MyMvcApp.Models.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MyMvcApp.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
@@ -535,6 +546,8 @@ namespace MyMvcApp.Migrations
                     b.Navigation("Classroom");
 
                     b.Navigation("DayEntry");
+
+                    b.Navigation("Group");
 
                     b.Navigation("Subject");
 

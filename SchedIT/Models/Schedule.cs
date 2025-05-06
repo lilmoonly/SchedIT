@@ -22,6 +22,9 @@ namespace MyMvcApp.Models
 
         [Required]
         public int ClassroomId { get; set; }
+
+        [Required]
+        public int GroupId { get; set; }
         
         [ForeignKey("DayEntryId")]
         public DayEntry? DayEntry { get; set; }
@@ -37,5 +40,8 @@ namespace MyMvcApp.Models
 
         [ForeignKey("ClassroomId")]
         public Classroom? Classroom { get; set; }
+
+        [ForeignKey("GroupId")]
+        public Group? Group { get; set; }
     }
 }
