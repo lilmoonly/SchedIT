@@ -27,10 +27,6 @@ namespace ScheduleEditorControllerTests
             var classroom = new Classroom { Id = 1, Number = "101", Building = "Головний", Capacity = 40 };
             var time = new TimeEntry { Id = 1, Value = "08:30 - 10:00" };
             var day = new DayEntry { Id = 1, Value = "Понеділок" };
-            var group = new Group { Id = 1, Name = "Група 1", FacultyId = 1 };
-            var faculty = new Faculty { Id = 1, Name = "Факультет комп'ютерних наук" };
-            dbContext.Faculties.Add(faculty);
-            dbContext.Groups.Add(group);
 
             dbContext.Subjects.Add(subject);
             dbContext.Teachers.Add(teacher);
@@ -43,7 +39,6 @@ namespace ScheduleEditorControllerTests
                 Id = 1,
                 SubjectId = subject.Id,
                 TeacherId = teacher.Id,
-                GroupId = group.Id,
                 ClassroomId = classroom.Id,
                 TimeEntryId = time.Id,
                 DayEntryId = day.Id
@@ -78,30 +73,30 @@ namespace ScheduleEditorControllerTests
             Assert.IsType<ScheduleFormViewModel>(result.Model);
         }
 
-        // [Fact]
-        // public void TestAdd_Post_ValidModel_AddsScheduleAndRedirects()
-        // {
-        //     var dbContext = GetDbContext();
-        //     var controller = new ScheduleEditorController(dbContext);
+        [Fact]
+        public void TestAdd_Post_ValidModel_AddsScheduleAndRedirects()
+        {
+            var dbContext = GetDbContext();
+            var controller = new ScheduleEditorController(dbContext);
 
-        //     var model = new ScheduleFormViewModel
-        //     {
-        //         Schedule = new Schedule
-        //         {
-        //             SubjectId = 1,
-        //             TeacherId = 1,
-        //             ClassroomId = 1,
-        //             DayEntryId = 1,
-        //             TimeEntryId = 1
-        //         }
-        //     };
+            var model = new ScheduleFormViewModel
+            {
+                Schedule = new Schedule
+                {
+                    SubjectId = 1,
+                    TeacherId = 1,
+                    ClassroomId = 1,
+                    DayEntryId = 1,
+                    TimeEntryId = 1
+                }
+            };
 
-        //     var result = controller.Add(model) as RedirectToActionResult;
+            var result = controller.Add(model) as RedirectToActionResult;
 
-        //     Assert.NotNull(result);
-        //     Assert.Equal("Index", result.ActionName);
-        //     Assert.Equal(2, dbContext.Schedules.Count());
-        // }
+            Assert.NotNull(result);
+            Assert.Equal("Index", result.ActionName);
+            Assert.Equal(2, dbContext.Schedules.Count());
+        }
 
         [Fact]
         public void TestAdd_Post_InvalidModel_ReturnsFormView()
@@ -141,25 +136,25 @@ namespace ScheduleEditorControllerTests
             Assert.IsType<NotFoundResult>(result);
         }
 
-        // [Fact]
-        // public void TestEdit_Post_ValidModel_UpdatesScheduleAndRedirects()
-        // {
-        //     var dbContext = GetDbContext();
-        //     var controller = new ScheduleEditorController(dbContext);
+        [Fact]
+        public void TestEdit_Post_ValidModel_UpdatesScheduleAndRedirects()
+        {
+            var dbContext = GetDbContext();
+            var controller = new ScheduleEditorController(dbContext);
 
-        //     var updatedSchedule = dbContext.Schedules.First();
-        //     updatedSchedule.ClassroomId = 1;
+            var updatedSchedule = dbContext.Schedules.First();
+            updatedSchedule.ClassroomId = 1;
 
-        //     var model = new ScheduleFormViewModel
-        //     {
-        //         Schedule = updatedSchedule
-        //     };
+            var model = new ScheduleFormViewModel
+            {
+                Schedule = updatedSchedule
+            };
 
-        //     var result = controller.Edit(model) as RedirectToActionResult;
+            var result = controller.Edit(model) as RedirectToActionResult;
 
-        //     Assert.NotNull(result);
-        //     Assert.Equal("Index", result.ActionName);
-        // }
+            Assert.NotNull(result);
+            Assert.Equal("Index", result.ActionName);
+        }
 
         [Fact]
         public void TestEdit_Post_InvalidModel_ReturnsFormView()

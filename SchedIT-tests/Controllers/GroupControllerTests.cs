@@ -55,19 +55,19 @@ namespace GroupControllerTests
         }
 
 
-        // [Fact]
-        // public async Task Create_ValidGroup_RedirectsToIndex()
-        // {
-        //     var dbContext = GetDbContext();
-        //     var controller = new GroupController(dbContext);
-        //     var newGroup = new Group { Id = 2, Name = "Group B", FacultyId = 1 };
+        [Fact]
+        public async Task Create_ValidGroup_RedirectsToIndex()
+        {
+            var dbContext = GetDbContext();
+            var controller = new GroupController(dbContext);
+            var newGroup = new Group { Id = 2, Name = "Group B", FacultyId = 1 };
 
-        //     var result = await controller.Create(newGroup) as RedirectToActionResult;
+            var result = await controller.Create(newGroup) as RedirectToActionResult;
 
-        //     Assert.NotNull(result);
-        //     Assert.Equal("Index", result.ActionName);
-        //     Assert.Equal(2, dbContext.Groups.Count());
-        // }
+            Assert.NotNull(result);
+            Assert.Equal("Index", result.ActionName);
+            Assert.Equal(2, dbContext.Groups.Count());
+        }
 
         [Fact]
         public async Task Edit_ValidId_ReturnsViewWithGroup()
@@ -82,23 +82,23 @@ namespace GroupControllerTests
             Assert.Equal(1, model.Group.Id);
         }
         
-        // [Fact]
-        // public async Task Edit_ValidGroup_RedirectsToIndex()
-        // {
-        //     var dbContext = GetDbContext();
-        //     var controller = new GroupController(dbContext);
-        //     var existingGroup = dbContext.Groups.FirstOrDefault(g => g.Id == 1);
-        //     var groupToUpdate = new Group { Id = 1, Name = "PMI-33", FacultyId = 1 };
+        [Fact]
+        public async Task Edit_ValidGroup_RedirectsToIndex()
+        {
+            var dbContext = GetDbContext();
+            var controller = new GroupController(dbContext);
+            var existingGroup = dbContext.Groups.FirstOrDefault(g => g.Id == 1);
+            var groupToUpdate = new Group { Id = 1, Name = "PMI-33", FacultyId = 1 };
             
-        //     dbContext.Entry(existingGroup).State = EntityState.Detached; 
+            dbContext.Entry(existingGroup).State = EntityState.Detached; 
 
-        //     var result = await controller.Edit(1, groupToUpdate) as RedirectToActionResult;
+            var result = await controller.Edit(1, groupToUpdate) as RedirectToActionResult;
 
-        //     Assert.NotNull(result);
-        //     Assert.Equal("Index", result.ActionName);
-        //     Assert.Equal(1, dbContext.Groups.Count()); 
-        //     Assert.Equal("PMI-33", dbContext.Groups.First().Name);
-        // }
+            Assert.NotNull(result);
+            Assert.Equal("Index", result.ActionName);
+            Assert.Equal(1, dbContext.Groups.Count()); 
+            Assert.Equal("PMI-33", dbContext.Groups.First().Name);
+        }
 
         
         [Fact]
