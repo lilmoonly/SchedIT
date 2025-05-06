@@ -1,8 +1,8 @@
 name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: SchedIT                   # Назва твого Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: '.'              # Не змінюємо, бо артефакт створюється глобально
+  AZURE_WEBAPP_NAME: SchedIT                  
+  AZURE_WEBAPP_PACKAGE_PATH: '.'              
   DOTNET_VERSION: '8.0'
   GITHUB_TOKEN: ${{ secrets.SCHEDIT_TOKEN }}
 
@@ -37,8 +37,8 @@ jobs:
       - name: Build with dotnet
         run: dotnet build SchedIT/MyMvcApp.sln --configuration Release
 
-     # - name: Test with the dotnet CLI
-     #   run: dotnet test SchedIT/MyMvcApp.sln
+      - name: Test with the dotnet CLI
+        run: dotnet test SchedIT/MyMvcApp.sln
 
       - name: dotnet publish
         run: dotnet publish SchedIT/MyMvcApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
