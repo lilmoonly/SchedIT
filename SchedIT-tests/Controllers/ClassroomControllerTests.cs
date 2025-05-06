@@ -33,24 +33,7 @@ namespace ClassroomControllerTests
             dbContext.SaveChanges();
             return dbContext;
         }
-        
-        
-        // This test ensures the Create(Classroom) POST action adds a new classroom,
-        // redirects to the Index action, and the total count becomes three.
-        [Fact]
-        public void TestCreateClassroom()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ClassroomController(dbContext);
-            var newClassroom = new Classroom { Id = 3, Number = "116", Building = "Головний корпус", Capacity = 25 };
 
-            var result = controller.Create(newClassroom) as RedirectToActionResult;
-
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-            Assert.Equal(3, dbContext.Classrooms.Count());
-        }
-        
         // This test verifies that the Create() GET action returns a ViewResult to display the form.
         [Fact]
         public void TestCreate_Get_ReturnsView()

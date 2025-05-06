@@ -1,7 +1,7 @@
 @model MyMvcApp.Models.ScheduleFormViewModel
 
 <div class="container mt-4">
-    <h2>Редагувати пару</h2>
+    <h2>Редагувати заняття</h2>
 
     <form method="post" class="mt-3">
         <input type="hidden" asp-for="Schedule.Id" />
@@ -17,14 +17,7 @@
             <label asp-for="Schedule.SubjectId" class="form-label">Предмет</label>
             <select asp-for="Schedule.SubjectId" class="form-select" asp-items="Model.SubjectOptions"></select>
         </div>
-
-        @* Група *@
-        <div class="mb-3">
-            <label asp-for="Schedule.GroupId" class="form-label">Група</label>
-            <select asp-for="Schedule.GroupId" class="form-select" asp-items="Model.GroupOptions"></select>
-            <div class="form-text">Формат: Назва групи (Факультет)</div>
-        </div>
-
+        
         @* Час *@
         <div class="mb-3">
             <label asp-for="Schedule.TimeEntryId" class="form-label">Час</label>

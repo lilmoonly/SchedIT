@@ -11,6 +11,5 @@ namespace MyMvcApp.Models
         public List<SelectListItem> TimeOptions { get; set; } = new();
         public List<SelectListItem> TeacherOptions { get; set; } = new();
         public List<SelectListItem> ClassroomOptions { get; set; } = new();
-        public List<SelectListItem> GroupOptions { get; set; } = new();
     }
 }

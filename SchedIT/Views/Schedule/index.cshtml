@@ -43,7 +43,6 @@
                         <tr>
                             <th>Час</th>
                             <th>Предмет</th>
-                            <th>Група</th>
                             <th>Викладач</th>
                             <th>Аудиторія</th>
                         </tr>
@@ -54,9 +53,6 @@
                             <tr>
                                 <td>@schedule.TimeEntry?.Value</td>
                                 <td>@schedule.Subject?.Name</td>
-                                <td>
-                                    @schedule.Group?.Name<br/>
-                                </td>
                                 <td>
                                     @schedule.Teacher?.ShortName<br/>
                                     <small class="text-muted">@schedule.Teacher?.Position</small>

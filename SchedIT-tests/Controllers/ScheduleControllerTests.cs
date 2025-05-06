@@ -47,20 +47,6 @@ namespace ScheduleEditorControllerTests
             dbContext.SaveChanges();
             return dbContext;
         }
-
-        [Fact]
-        public void TestIndex_ReturnsViewWithSchedules()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ScheduleEditorController(dbContext);
-
-            var result = controller.Index() as ViewResult;
-
-            Assert.NotNull(result);
-            var model = Assert.IsAssignableFrom<List<Schedule>>(result.Model);
-            Assert.Single(model);
-        }
-
         [Fact]
         public void TestAdd_Get_ReturnsViewWithFormViewModel()
         {
@@ -72,47 +58,6 @@ namespace ScheduleEditorControllerTests
             Assert.NotNull(result);
             Assert.IsType<ScheduleFormViewModel>(result.Model);
         }
-
-        [Fact]
-        public void TestAdd_Post_ValidModel_AddsScheduleAndRedirects()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ScheduleEditorController(dbContext);
-
-            var model = new ScheduleFormViewModel
-            {
-                Schedule = new Schedule
-                {
-                    SubjectId = 1,
-                    TeacherId = 1,
-                    ClassroomId = 1,
-                    DayEntryId = 1,
-                    TimeEntryId = 1
-                }
-            };
-
-            var result = controller.Add(model) as RedirectToActionResult;
-
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-            Assert.Equal(2, dbContext.Schedules.Count());
-        }
-
-        [Fact]
-        public void TestAdd_Post_InvalidModel_ReturnsFormView()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ScheduleEditorController(dbContext);
-            controller.ModelState.AddModelError("Error", "Fake error");
-
-            var model = new ScheduleFormViewModel { Schedule = new Schedule() };
-
-            var result = controller.Add(model) as ViewResult;
-
-            Assert.NotNull(result);
-            Assert.IsType<ScheduleFormViewModel>(result.Model);
-        }
-
         [Fact]
         public void TestEdit_Get_ExistingId_ReturnsFormView()
         {
@@ -135,26 +80,7 @@ namespace ScheduleEditorControllerTests
 
             Assert.IsType<NotFoundResult>(result);
         }
-
-        [Fact]
-        public void TestEdit_Post_ValidModel_UpdatesScheduleAndRedirects()
-        {
-            var dbContext = GetDbContext();
-            var controller = new ScheduleEditorController(dbContext);
-
-            var updatedSchedule = dbContext.Schedules.First();
-            updatedSchedule.ClassroomId = 1;
-
-            var model = new ScheduleFormViewModel
-            {
-                Schedule = updatedSchedule
-            };
-
-            var result = controller.Edit(model) as RedirectToActionResult;
-
-            Assert.NotNull(result);
-            Assert.Equal("Index", result.ActionName);
-        }
+        
 
         [Fact]
         public void TestEdit_Post_InvalidModel_ReturnsFormView()

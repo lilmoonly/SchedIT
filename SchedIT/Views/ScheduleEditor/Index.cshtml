@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Редагування розкладу</h2>
     <a class="btn btn-success" asp-action="Add">
-        Додати пару
+        Додати заняття
     </a>
 </div>
 
@@ -14,7 +14,6 @@
                 <th>День</th>
                 <th>Час</th>
                 <th>Предмет</th>
-                <th>Група</th>
                 <th>Викладач</th>
                 <th>Аудиторія</th>
                 <th>Дії</th>
@@ -27,9 +26,6 @@
                     <td>@item.DayEntry?.Value</td>
                     <td>@item.TimeEntry?.Value</td>
                     <td>@item.Subject?.Name</td>
-                    <td>
-                        <strong>@item.Group?.Name</strong><br />
-                    </td>
                     <td>
                         <strong>@item.Teacher?.FullName</strong><br />
                         <small class="text-muted">@item.Teacher?.Position — @item.Teacher?.Faculty</small>

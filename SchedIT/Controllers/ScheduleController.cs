@@ -32,8 +32,6 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.DayEntry)
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
-                .Include(s => s.Group)
-                .Include(s => s.Group.Faculty)
                 .ToListAsync();
 
             return View(schedules);
