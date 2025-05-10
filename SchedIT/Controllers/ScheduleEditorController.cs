@@ -18,17 +18,69 @@ namespace MyMvcApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, string dayFilter)
         {
+            // Сортування
+            ViewData["DaySortParm"] = String.IsNullOrEmpty(sortOrder) ? "day_desc" : "";
+            ViewData["TimeSortParm"] = sortOrder == "Time" ? "time_desc" : "Time";
+            ViewData["SubjectSortParm"] = sortOrder == "Subject" ? "subject_desc" : "Subject";
+            ViewData["TeacherSortParm"] = sortOrder == "Teacher" ? "teacher_desc" : "Teacher";
+            ViewData["ClassroomSortParm"] = sortOrder == "Classroom" ? "classroom_desc" : "Classroom";
+
+            // Фільтрація по дням
+            var days = _context.Days.ToList();
+            ViewData["DayFilter"] = new SelectList(days, "Id", "Value", dayFilter);
+
             var schedules = _context.Schedules
                 .Include(s => s.DayEntry)
                 .Include(s => s.Subject)
                 .Include(s => s.TimeEntry)
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
-                .ToList();
+                .AsQueryable();
 
-            return View(schedules);
+            // Фільтрація по дню
+            if (!string.IsNullOrEmpty(dayFilter))
+            {
+                schedules = schedules.Where(s => s.DayEntry.Id == int.Parse(dayFilter));
+            }
+
+            // Сортування
+            switch (sortOrder)
+            {
+                case "day_desc":
+                    schedules = schedules.OrderByDescending(s => s.DayEntry.Value);
+                    break;
+                case "Time":
+                    schedules = schedules.OrderBy(s => s.TimeEntry.Value);
+                    break;
+                case "time_desc":
+                    schedules = schedules.OrderByDescending(s => s.TimeEntry.Value);
+                    break;
+                case "Subject":
+                    schedules = schedules.OrderBy(s => s.Subject.Name);
+                    break;
+                case "subject_desc":
+                    schedules = schedules.OrderByDescending(s => s.Subject.Name);
+                    break;
+                case "Teacher":
+                    schedules = schedules.OrderBy(s => s.Teacher.FullName);
+                    break;
+                case "teacher_desc":
+                    schedules = schedules.OrderByDescending(s => s.Teacher.FullName);
+                    break;
+                case "Classroom":
+                    schedules = schedules.OrderBy(s => s.Classroom.Number);
+                    break;
+                case "classroom_desc":
+                    schedules = schedules.OrderByDescending(s => s.Classroom.Number);
+                    break;
+                default:
+                    schedules = schedules.OrderBy(s => s.DayEntry.Value);
+                    break;
+            }
+
+            return View(schedules.ToList());
         }
 
 
