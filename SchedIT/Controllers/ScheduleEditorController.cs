@@ -21,13 +21,13 @@ namespace MyMvcApp.Controllers
         public IActionResult Index(string sortOrder, string dayFilter)
         {
             // Сортування
-            ViewData["DaySortParm"] = String.IsNullOrEmpty(sortOrder) ? "day_desc" : "";
+            ViewData["DaySortParm"] = sortOrder == "Day" ? "day_desc" : "Day";
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["TimeSortParm"] = sortOrder == "Time" ? "time_desc" : "Time";
             ViewData["SubjectSortParm"] = sortOrder == "Subject" ? "subject_desc" : "Subject";
             ViewData["TeacherSortParm"] = sortOrder == "Teacher" ? "teacher_desc" : "Teacher";
             ViewData["ClassroomSortParm"] = sortOrder == "Classroom" ? "classroom_desc" : "Classroom";
-
-            // Фільтрація по дням
+            
             var days = _context.Days.ToList();
             ViewData["DayFilter"] = new SelectList(days, "Id", "Value", dayFilter);
 
@@ -38,18 +38,36 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
                 .AsQueryable();
-
-            // Фільтрація по дню
+            
             if (!string.IsNullOrEmpty(dayFilter))
             {
                 schedules = schedules.Where(s => s.DayEntry.Id == int.Parse(dayFilter));
             }
-
-            // Сортування
+            
+            var dayOrder = new Dictionary<string, int>
+            {
+                { "Понеділок", 1 },
+                { "Вівторок", 2 },
+                { "Середа", 3 },
+                { "Четвер", 4 },
+                { "Пʼятниця", 5 },
+                { "Субота", 6 },
+                { "Неділя", 7 }
+            };
+            
             switch (sortOrder)
             {
                 case "day_desc":
-                    schedules = schedules.OrderByDescending(s => s.DayEntry.Value);
+                    schedules = schedules
+                        .AsEnumerable()
+                        .OrderByDescending(s => dayOrder.GetValueOrDefault(s.DayEntry.Value ?? "", 99))
+                        .AsQueryable();
+                    break;
+                case "Day":
+                    schedules = schedules
+                        .AsEnumerable()
+                        .OrderBy(s => dayOrder.GetValueOrDefault(s.DayEntry.Value ?? "", 99))
+                        .AsQueryable();
                     break;
                 case "Time":
                     schedules = schedules.OrderBy(s => s.TimeEntry.Value);

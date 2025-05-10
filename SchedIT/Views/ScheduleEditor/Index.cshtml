@@ -1,4 +1,5 @@
 @model List<MyMvcApp.Models.Schedule>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Редагування розкладу</h2>
@@ -7,27 +8,29 @@
     </a>
 </div>
 
-<div class="mb-4">
-    <form method="get" asp-action="Index">
-        <div class="form-group">
-            <label for="dayFilter">Виберіть день</label>
-            <select id="dayFilter" name="dayFilter" class="form-control" asp-items="@(ViewData["DayFilter"] as SelectList)">
-                <option value="">-- Усі дні --</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Застосувати фільтр</button>
-    </form>
-</div>
 
 <div class="table-responsive">
     <table class="table table-hover table-striped align-middle">
         <thead class="table-dark">
             <tr>
                 <th>
-                    День
+                    <a class="text-white text-decoration-none"
+                       asp-action="Index"
+                       asp-route-sortOrder="@ViewData["DaySortParm"]"
+                       asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
+                        День
+                        @if (ViewData["DaySortParm"].ToString() == "day_desc")
+                        {
+                        <i class="bi bi-arrow-down-short"></i>
+                        }
+                        else
+                        {
+                        <i class="bi bi-arrow-up-short"></i>
+                        }
+                    </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
+                    <a class="text-white text-decoration-none" asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
                         Час
                         @if (ViewData["TimeSortParm"].ToString() == "time_desc")
                         {
@@ -40,7 +43,7 @@
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SubjectSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
+                    <a class="text-white text-decoration-none" asp-action="Index" asp-route-sortOrder="@ViewData["SubjectSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
                         Предмет
                         @if (ViewData["SubjectSortParm"].ToString() == "subject_desc")
                         {
@@ -53,7 +56,7 @@
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TeacherSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
+                    <a class="text-white text-decoration-none" asp-action="Index" asp-route-sortOrder="@ViewData["TeacherSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
                         Викладач
                         @if (ViewData["TeacherSortParm"].ToString() == "teacher_desc")
                         {
@@ -63,10 +66,11 @@
                         {
                             <i class="bi bi-arrow-up-short"></i>
                         }
+                        
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ClassroomSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
+                    <a class="text-white text-decoration-none" asp-action="Index" asp-route-sortOrder="@ViewData["ClassroomSortParm"]" asp-route-dayFilter="@Context.Request.Query["dayFilter"]">
                         Аудиторія
                         @if (ViewData["ClassroomSortParm"].ToString() == "classroom_desc")
                         {
