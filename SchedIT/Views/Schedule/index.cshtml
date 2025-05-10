@@ -14,13 +14,12 @@
     .schedule-table col.teacher-col { width: 30%; }
     .schedule-table col.room-col    { width: 20%; }
 
-    .schedule-table .conflic_cell {
-        background-color: #f22d3d; /* Колір для клітинок, які конфліктують */
-        color: white; /* Білий текст для кращої видимості */
-    }
-    
     .schedule-table .conflict_row {
-        background-color: #e1888f; /* Колір для конфліктних рядків */
+        background-color: #e1888f;
+    }
+
+    .schedule-table {
+        width: 100%;
     }
 
 </style>
@@ -53,18 +52,9 @@
                     <tbody>
                         @foreach (var schedule in group)
                         {
-                            // Перевіряємо, чи є конфлікти для цього розкладу
                             var isConflicted = conflicts.Any(c => c.Id == schedule.Id);
 
-                            // Логування для дебагу
-                            <text>
-                                console.log("Checking schedule ID: @schedule.Id - Conflicted: @isConflicted");
-                            </text>
-
                             <tr class="@((isConflicted ? "conflict_row" : ""))" >
-                                <text>
-                                    @((isConflicted ? "conflict_row" : ""))
-                                </text>
                                 <td class="@(isConflicted && schedule.TimeEntry != null ? "conflict_cell" : "")">
                                     @schedule.TimeEntry?.Value
                                 </td>
@@ -105,18 +95,6 @@
 </div>
 
 <script>
-    // Виведення вмісту conflicts на консоль
-    var conflicts = @Html.Raw(conflictsJson);
-    console.log("Conflicts: ", conflicts);
-
-    // Додаткове логування для кожного розкладу
-    document.addEventListener("DOMContentLoaded", function() {
-        var model = @Html.Raw(Json.Serialize(Model.SelectMany(g => g))); // Перетворюємо модель в JSON
-        model.forEach(function(schedule) {
-            console.log("Schedule ID: " + schedule.Id + ", Time: " + (schedule.TimeEntry ? schedule.TimeEntry.Value : 'No time'));
-        });
-    });
-
     document.addEventListener("DOMContentLoaded", function() {
         var rows = document.querySelectorAll('tr[data-conflicted]');
         rows.forEach(function(row) {
