@@ -56,15 +56,16 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Schedule" asp-action="ViewRatings">Оцінки розкладу</a>
                     </li>
                     }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                    <li class="nav-item">
-                        <form method="post" asp-controller="Account" asp-action="Logout" style="display: inline;">
-                            <button type="submit" class="btn btn-custom">Вийти</button>
-                        </form>
-                    </li>
-                    }
+                    
                 </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="d-flex align-items-center ms-auto">
+                        <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger">Вийти</button>
+                        </form>
+                    </div>
+                }
             </div>
         </div>
     </nav>

@@ -1,4 +1,3 @@
-
 @model IEnumerable<MyMvcApp.Models.Schedule>
 
 @{
@@ -28,6 +27,13 @@
         .OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
 }
 
+<style>
+    .schedule-table col.time-col    { width: 15%; }
+    .schedule-table col.subject-col { width: 35%; }
+    .schedule-table col.teacher-col { width: 30%; }
+    .schedule-table col.room-col    { width: 20%; }
+</style>
+
 <div class="container py-4">
     <h2 class="text-center mb-4">Розклад</h2>
 
@@ -38,7 +44,13 @@
                 <h4 class="mb-0">@group.Key</h4>
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 schedule-table">
+                    <colgroup>
+                        <col class="time-col" />
+                        <col class="subject-col" />
+                        <col class="teacher-col" />
+                        <col class="room-col" />
+                    </colgroup>
                     <thead class="table-light">
                         <tr>
                             <th>Час</th>
@@ -54,7 +66,7 @@
                                 <td>@schedule.TimeEntry?.Value</td>
                                 <td>@schedule.Subject?.Name</td>
                                 <td>
-                                    @schedule.Teacher?.ShortName<br/>
+                                    @schedule.Teacher?.ShortName<br />
                                     <small class="text-muted">@schedule.Teacher?.Position</small>
                                 </td>
                                 <td>@schedule.Classroom?.Number, @schedule.Classroom?.Building</td>
@@ -83,7 +95,3 @@
         </div>
     }
 </div>
-
-
-
-
