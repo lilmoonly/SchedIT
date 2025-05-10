@@ -18,7 +18,7 @@ namespace MyMvcApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string sortOrder, string dayFilter)
+        public IActionResult Index(string sortOrder, string dayFilter, string subjectFilter, string teacherFilter, string classroomFilter)
         {
             // Сортування
             ViewData["DaySortParm"] = sortOrder == "Day" ? "day_desc" : "Day";
@@ -31,6 +31,12 @@ namespace MyMvcApp.Controllers
             var days = _context.Days.ToList();
             ViewData["DayFilter"] = new SelectList(days, "Id", "Value", dayFilter);
 
+            // Фільтри для предметів, викладачів, аудиторій
+            ViewData["SubjectFilterList"] = _context.Subjects.Select(s => s.Name).ToList();
+            ViewData["TeacherFilterList"] = _context.Teachers.Select(t => t.FullName).ToList();
+            ViewData["ClassroomFilterList"] = _context.Classrooms.Select(c => c.Number.ToString()).ToList();
+
+            // Початковий запит на отримання розкладів
             var schedules = _context.Schedules
                 .Include(s => s.DayEntry)
                 .Include(s => s.Subject)
@@ -38,12 +44,32 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.Teacher)
                 .Include(s => s.Classroom)
                 .AsQueryable();
-            
+
+            // Фільтрація за днем
             if (!string.IsNullOrEmpty(dayFilter))
             {
                 schedules = schedules.Where(s => s.DayEntry.Id == int.Parse(dayFilter));
             }
-            
+
+            // Фільтрація за предметом
+            if (!string.IsNullOrEmpty(subjectFilter))
+            {
+                schedules = schedules.Where(s => s.Subject.Name == subjectFilter);
+            }
+
+            // Фільтрація за викладачем
+            if (!string.IsNullOrEmpty(teacherFilter))
+            {
+                schedules = schedules.Where(s => s.Teacher.FullName == teacherFilter);
+            }
+
+            // Фільтрація за аудиторією
+            if (!string.IsNullOrEmpty(classroomFilter))
+            {
+                schedules = schedules.Where(s => s.Classroom.Number.ToString() == classroomFilter);
+            }
+
+            // Порядок днів
             var dayOrder = new Dictionary<string, int>
             {
                 { "Понеділок", 1 },
@@ -54,7 +80,8 @@ namespace MyMvcApp.Controllers
                 { "Субота", 6 },
                 { "Неділя", 7 }
             };
-            
+
+            // Сортування
             switch (sortOrder)
             {
                 case "day_desc":
@@ -100,6 +127,7 @@ namespace MyMvcApp.Controllers
 
             return View(schedules.ToList());
         }
+
 
 
         public IActionResult Add()

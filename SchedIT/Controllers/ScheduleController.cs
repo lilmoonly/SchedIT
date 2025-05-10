@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +6,8 @@ using MyMvcApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-
+using System.Collections.Generic;
+using System;
 
 namespace MyMvcApp.Controllers
 {
@@ -16,7 +16,6 @@ namespace MyMvcApp.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        
 
         public ScheduleController(AppDbContext context, UserManager<ApplicationUser> userManager)
         {
@@ -34,8 +33,59 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.Classroom)
                 .ToListAsync();
 
-            return View(schedules);
+            var daysOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "Понеділок", 1 }, { "Вівторок", 2 }, { "Середа", 3 }, { "Четвер", 4 },
+                { "П’ятниця", 5 }, { "Субота", 6 }, { "Неділя", 7 }
+            };
+
+            var filteredSchedule = schedules
+                .Where(s => !string.IsNullOrWhiteSpace(s.DayEntry?.Value) && !string.IsNullOrWhiteSpace(s.TimeEntry?.Value));
+
+            var orderedSchedule = filteredSchedule
+                .OrderBy(s => daysOrder.TryGetValue(s.DayEntry.Value.Trim(), out int dayOrder) ? dayOrder : int.MaxValue)
+                .ThenBy(s =>
+                {
+                    var parts = s.TimeEntry.Value.Split('-');
+                    var startTimeText = parts.Length > 0 ? parts[0].Trim() : s.TimeEntry.Value.Trim();
+                    return TimeSpan.TryParse(startTimeText, out TimeSpan time) ? time : TimeSpan.MaxValue;
+                })
+                .ToList();
+
+            var groupedSchedule = orderedSchedule
+                .GroupBy(s => s.DayEntry.Value.Trim())
+                .OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
+
+            // Перевірка на конфлікти
+            var conflicts = new List<Schedule>();
+            foreach (var schedule in orderedSchedule)
+            {
+                // Заміна ScheduleId на Id
+                var conflictForTeacher = orderedSchedule.Any(s => s.Id != schedule.Id && 
+                                                                s.TimeEntry.Value == schedule.TimeEntry.Value &&
+                                                                s.DayEntry.Value == schedule.DayEntry.Value &&
+                                                                s.TeacherId == schedule.TeacherId);
+
+                var conflictForClassroom = orderedSchedule.Any(s => s.Id != schedule.Id && 
+                                                                    s.TimeEntry.Value == schedule.TimeEntry.Value &&
+                                                                    s.DayEntry.Value == schedule.DayEntry.Value &&
+                                                                    s.ClassroomId == schedule.ClassroomId);
+
+
+                if (conflictForTeacher || conflictForClassroom)
+                {
+                    conflicts.Add(schedule);
+                    Console.WriteLine($"Conflict detected for Schedule ID: {schedule.Id}, Day: {schedule.DayEntry.Value}, Time: {schedule.TimeEntry.Value}");
+                }
+            }
+
+            // Передаємо конфлікти в вигляд
+            ViewBag.Conflicts = conflicts;
+            ViewBag.DaysOrder = daysOrder;
+
+            return View(groupedSchedule);
         }
+
         [HttpPost]
         public async Task<IActionResult> RateSchedule(int rating, int scheduleId)
         {

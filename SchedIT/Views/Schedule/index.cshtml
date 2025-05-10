@@ -1,30 +1,11 @@
-@model IEnumerable<MyMvcApp.Models.Schedule>
-
+@model IEnumerable<IGrouping<string, MyMvcApp.Models.Schedule>>
 @{
     ViewData["Title"] = "Розклад";
+    var daysOrder = ViewBag.DaysOrder as Dictionary<string, int>;
+    var conflicts = ViewBag.Conflicts as List<MyMvcApp.Models.Schedule>;
 
-    var daysOrder = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-    {
-        { "Понеділок", 1 }, { "Вівторок", 2 }, { "Середа", 3 }, { "Четвер", 4 },
-        { "П’ятниця", 5 }, { "Субота", 6 }, { "Неділя", 7 }
-    };
-
-    var filteredSchedule = Model
-        .Where(s => !string.IsNullOrWhiteSpace(s.DayEntry?.Value) && !string.IsNullOrWhiteSpace(s.TimeEntry?.Value));
-
-    var orderedSchedule = filteredSchedule
-        .OrderBy(s => daysOrder.TryGetValue(s.DayEntry.Value.Trim(), out int dayOrder) ? dayOrder : int.MaxValue)
-        .ThenBy(s =>
-        {
-            var parts = s.TimeEntry.Value.Split('-');
-            var startTimeText = parts.Length > 0 ? parts[0].Trim() : s.TimeEntry.Value.Trim();
-            return TimeSpan.TryParse(startTimeText, out TimeSpan time) ? time : TimeSpan.MaxValue;
-        })
-        .ToList();
-
-    var groupedSchedule = orderedSchedule
-        .GroupBy(s => s.DayEntry.Value.Trim())
-        .OrderBy(g => daysOrder.TryGetValue(g.Key, out int dayOrder) ? dayOrder : int.MaxValue);
+    // Преобразуем список conflicts в JSON строку для использования в JS
+    var conflictsJson = Json.Serialize(conflicts);
 }
 
 <style>
@@ -32,19 +13,28 @@
     .schedule-table col.subject-col { width: 35%; }
     .schedule-table col.teacher-col { width: 30%; }
     .schedule-table col.room-col    { width: 20%; }
+
+    .schedule-table .conflict_row {
+        background-color: #e1888f;
+    }
+
+    .schedule-table {
+        width: 100%;
+    }
+
 </style>
 
 <div class="container py-4">
     <h2 class="text-center mb-4">Розклад</h2>
 
-    @foreach (var group in groupedSchedule)
+    @foreach (var group in Model)
     {
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">@group.Key</h4>
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0 schedule-table">
+                <table class=" table-hover mb-0 schedule-table">
                     <colgroup>
                         <col class="time-col" />
                         <col class="subject-col" />
@@ -62,14 +52,22 @@
                     <tbody>
                         @foreach (var schedule in group)
                         {
-                            <tr>
-                                <td>@schedule.TimeEntry?.Value</td>
-                                <td>@schedule.Subject?.Name</td>
-                                <td>
+                            var isConflicted = conflicts.Any(c => c.Id == schedule.Id);
+
+                            <tr class="@((isConflicted ? "conflict_row" : ""))" >
+                                <td class="@(isConflicted && schedule.TimeEntry != null ? "conflict_cell" : "")">
+                                    @schedule.TimeEntry?.Value
+                                </td>
+                                <td class="@(isConflicted && schedule.Subject != null ? "conflict_cell" : "")">
+                                    @schedule.Subject?.Name
+                                </td>
+                                <td class="@(isConflicted && schedule.Teacher != null ? "conflict_cell" : "")">
                                     @schedule.Teacher?.ShortName<br />
                                     <small class="text-muted">@schedule.Teacher?.Position</small>
                                 </td>
-                                <td>@schedule.Classroom?.Number, @schedule.Classroom?.Building</td>
+                                <td class="@(isConflicted && schedule.Classroom != null ? "conflict_cell" : "")">
+                                    @schedule.Classroom?.Number, @schedule.Classroom?.Building
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -95,3 +93,20 @@
         </div>
     }
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var rows = document.querySelectorAll('tr[data-conflicted]');
+        rows.forEach(function(row) {
+            var isConflicted = row.getAttribute('data-conflicted') === 'True';
+            if (isConflicted) {
+                row.classList.add('conflict_row');
+                row.querySelectorAll('td').forEach(function(td) {
+                    td.classList.add('conflict_cell');
+                });
+            }
+        });
+    });
+
+
+</script>
