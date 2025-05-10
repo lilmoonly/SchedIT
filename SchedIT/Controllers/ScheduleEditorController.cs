@@ -18,19 +18,25 @@ namespace MyMvcApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string sortOrder, string dayFilter)
+        public IActionResult Index(string sortOrder, string dayFilter, string subjectFilter, string teacherFilter, string classroomFilter)
         {
             // Сортування
-            ViewData["DaySortParm"] = String.IsNullOrEmpty(sortOrder) ? "day_desc" : "";
+            ViewData["DaySortParm"] = sortOrder == "Day" ? "day_desc" : "Day";
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["TimeSortParm"] = sortOrder == "Time" ? "time_desc" : "Time";
             ViewData["SubjectSortParm"] = sortOrder == "Subject" ? "subject_desc" : "Subject";
             ViewData["TeacherSortParm"] = sortOrder == "Teacher" ? "teacher_desc" : "Teacher";
             ViewData["ClassroomSortParm"] = sortOrder == "Classroom" ? "classroom_desc" : "Classroom";
-
-            // Фільтрація по дням
+            
             var days = _context.Days.ToList();
             ViewData["DayFilter"] = new SelectList(days, "Id", "Value", dayFilter);
 
+            // Фільтри для предметів, викладачів, аудиторій
+            ViewData["SubjectFilterList"] = _context.Subjects.Select(s => s.Name).ToList();
+            ViewData["TeacherFilterList"] = _context.Teachers.Select(t => t.FullName).ToList();
+            ViewData["ClassroomFilterList"] = _context.Classrooms.Select(c => c.Number.ToString()).ToList();
+
+            // Початковий запит на отримання розкладів
             var schedules = _context.Schedules
                 .Include(s => s.DayEntry)
                 .Include(s => s.Subject)
@@ -39,17 +45,56 @@ namespace MyMvcApp.Controllers
                 .Include(s => s.Classroom)
                 .AsQueryable();
 
-            // Фільтрація по дню
+            // Фільтрація за днем
             if (!string.IsNullOrEmpty(dayFilter))
             {
                 schedules = schedules.Where(s => s.DayEntry.Id == int.Parse(dayFilter));
             }
 
+            // Фільтрація за предметом
+            if (!string.IsNullOrEmpty(subjectFilter))
+            {
+                schedules = schedules.Where(s => s.Subject.Name == subjectFilter);
+            }
+
+            // Фільтрація за викладачем
+            if (!string.IsNullOrEmpty(teacherFilter))
+            {
+                schedules = schedules.Where(s => s.Teacher.FullName == teacherFilter);
+            }
+
+            // Фільтрація за аудиторією
+            if (!string.IsNullOrEmpty(classroomFilter))
+            {
+                schedules = schedules.Where(s => s.Classroom.Number.ToString() == classroomFilter);
+            }
+
+            // Порядок днів
+            var dayOrder = new Dictionary<string, int>
+            {
+                { "Понеділок", 1 },
+                { "Вівторок", 2 },
+                { "Середа", 3 },
+                { "Четвер", 4 },
+                { "Пʼятниця", 5 },
+                { "Субота", 6 },
+                { "Неділя", 7 }
+            };
+
             // Сортування
             switch (sortOrder)
             {
                 case "day_desc":
-                    schedules = schedules.OrderByDescending(s => s.DayEntry.Value);
+                    schedules = schedules
+                        .AsEnumerable()
+                        .OrderByDescending(s => dayOrder.GetValueOrDefault(s.DayEntry.Value ?? "", 99))
+                        .AsQueryable();
+                    break;
+                case "Day":
+                    schedules = schedules
+                        .AsEnumerable()
+                        .OrderBy(s => dayOrder.GetValueOrDefault(s.DayEntry.Value ?? "", 99))
+                        .AsQueryable();
                     break;
                 case "Time":
                     schedules = schedules.OrderBy(s => s.TimeEntry.Value);
@@ -82,6 +127,7 @@ namespace MyMvcApp.Controllers
 
             return View(schedules.ToList());
         }
+
 
 
         public IActionResult Add()
