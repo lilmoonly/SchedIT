@@ -1,15 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Підключення SQLite замість PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -33,7 +33,6 @@ using (var scope = app.Services.CreateScope())
     {
         var db = services.GetRequiredService<AppDbContext>();
 
-        // Безпечне виконання міграцій
         if (db.Database.GetPendingMigrations().Any())
         {
             db.Database.Migrate();
@@ -51,7 +50,6 @@ using (var scope = app.Services.CreateScope())
             }
         }
 
-        // Створення користувачів
         async Task CreateUserIfNotExists(string email, string password, string fullName, string role)
         {
             if (await userManager.FindByEmailAsync(email) == null)
@@ -69,7 +67,6 @@ using (var scope = app.Services.CreateScope())
         await CreateUserIfNotExists("user@example.com", "User123!", "User", "User");
         await CreateUserIfNotExists("super@example.com", "Super123!", "Super Admin", "SuperAdmin");
 
-        // Ініціалізація таблиць
         if (!db.Subjects.Any())
         {
             db.Subjects.AddRange(
@@ -199,7 +196,6 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         Console.WriteLine($" Failed during app startup: {ex.Message}");
-        
     }
 }
 
